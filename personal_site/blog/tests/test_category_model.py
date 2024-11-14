@@ -1,5 +1,6 @@
 from django.test import TestCase
 from blog.models import Category, HistoryLog
+from blog.utils.hashmaker import make_hash_from_model
 
 class TestCategoryModel(TestCase):
     def setUp(self):
@@ -57,4 +58,12 @@ class TestCategoryModel(TestCase):
         category = Category.objects.get(name="test category")
 
         # assertions
-        self.assertEqual(str(category), "test category")
+        self.assertEqual(str(category), "Category: test category")
+    
+    def test_category_hash_field(self):
+        # get the category
+        category = Category.objects.get(name="test category")
+
+        # assertions
+        self.assertEqual(len(category.hash_field), 32)
+        self.assertEqual(category.hash_field, make_hash_from_model(category))

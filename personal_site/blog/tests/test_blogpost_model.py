@@ -1,5 +1,6 @@
 from django.test import TestCase
 from blog.models import BlogPost, Category, BlogUser, HistoryLog
+from blog.utils.hashmaker import make_hash_from_model
 
 
 class BlogPostModelTest(TestCase):
@@ -64,4 +65,12 @@ class BlogPostModelTest(TestCase):
         blog_post = BlogPost.objects.get(title="test title")
 
         # assertions
-        self.assertEqual(str(blog_post), "test title")
+        self.assertEqual(str(blog_post), "BlogPost: test title")
+    
+    def test_blog_post_hash_field(self):
+        # get the blog post
+        blog_post = BlogPost.objects.get(title="test title")
+
+        # assertions
+        self.assertEqual(len(blog_post.hash_field), 32)
+        self.assertEqual(blog_post.hash_field, make_hash_from_model(blog_post))

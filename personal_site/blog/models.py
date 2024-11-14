@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from .managers import BlogUserManager
+from .utils.hashmaker import make_hash_from_model
 
 # this app will need following models with folowng parameters
 # User - this will be the user who will be writing the blog. Needs to have username, password, email, first_name, last_name. 
@@ -22,6 +23,8 @@ class BlogUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
+    # create field to store 32 bit hash value created from id and email, automatically create hash value when user is created
+    hash_field = models.CharField(_("hash field"), max_length=32, blank=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
@@ -29,7 +32,7 @@ class BlogUser(AbstractBaseUser, PermissionsMixin):
     objects = BlogUserManager()
 
     def __str__(self):
-        return self.email
+        return f'User: {self.email}'
     
     def save(self, *args, **kwargs):
         if self.pk is None:
@@ -37,6 +40,9 @@ class BlogUser(AbstractBaseUser, PermissionsMixin):
         else:
             HistoryLog.objects.create(source=f'{self.pk}:{self}', action="User updated")
         super().save(*args, **kwargs)
+        # fill the hash field with 32 bit hash value created from id and str representation of the object
+        self.hash_field = make_hash_from_model(self)
+        super().save(update_fields=["hash_field"])
     
     def delete(self, *args, **kwargs):
         HistoryLog.objects.create(source=f'{self.pk}:{self}', action="User deleted")
@@ -48,9 +54,10 @@ class Category(models.Model):
     description = models.TextField(_("description"), blank=True)
     created_at = models.DateTimeField(_("created at"), auto_now_add=True)
     updated_at = models.DateTimeField(_("updated at"), auto_now=True)
+    hash_field = models.CharField(_("hash field"), max_length=32, blank=True)
 
     def __str__(self):
-        return self.name
+        return f'Category: {self.name}'
 
     def save(self, *args, **kwargs):
         if self.pk is None:
@@ -58,6 +65,9 @@ class Category(models.Model):
         else:
             HistoryLog.objects.create(source=f'{self.pk}:{self}', action="Category updated")
         super().save(*args, **kwargs)
+
+        self.hash_field = make_hash_from_model(self)
+        super().save(update_fields=["hash_field"])
     
     def delete(self, *args, **kwargs):
         HistoryLog.objects.create(source=f'{self.pk}:{self}', action="Category deleted")
@@ -72,9 +82,10 @@ class BlogPost(models.Model):
     updated_at = models.DateTimeField(_("updated at"), auto_now=True)
     image = models.ImageField(_("image"), upload_to="blog_images", blank=True) # title image for the blog page
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=False)
+    hash_field = models.CharField(_("hash field"), max_length=32, blank=True)
 
     def __str__(self):
-        return self.title
+        return f'BlogPost: {self.title}'
 
     def save(self, *args, **kwargs):
         if self.pk is None:
@@ -82,6 +93,9 @@ class BlogPost(models.Model):
         else:
             HistoryLog.objects.create(source=f'{self.pk}:{self}', action="Blog updated")
         super().save(*args, **kwargs)
+
+        self.hash_field = make_hash_from_model(self)
+        super().save(update_fields=["hash_field"])
     
     def delete(self, *args, **kwargs):
         HistoryLog.objects.create(source=f'{self.pk}:{self}', action="Blog deleted")
@@ -94,4 +108,4 @@ class HistoryLog(models.Model):
     created_at = models.DateTimeField(_("created at"), auto_now_add=True)
 
     def __str__(self):
-        return f"{self.source} - {self.action}"
+        return f"HistoryLog: {self.source} - {self.action}"

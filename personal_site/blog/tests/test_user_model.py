@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django .contrib.auth import get_user_model
 from blog.models import BlogUser, HistoryLog
-
+from blog.utils.hashmaker import make_hash_from_model
 
 class TestUserModel(TestCase):
 
@@ -79,4 +79,10 @@ class TestUserModel(TestCase):
         user = BlogUser.objects.get(email="new@test.test")
 
         # assertions
-        self.assertEqual(str(user), "new@test.test")
+        self.assertEqual(str(user), "User: new@test.test")
+    
+    def test_user_hash_field(self):
+        # get the user
+        user = BlogUser.objects.get(email="new@test.test")
+        self.assertEqual(len(user.hash_field), 32)
+        self.assertEqual(user.hash_field, make_hash_from_model(user))

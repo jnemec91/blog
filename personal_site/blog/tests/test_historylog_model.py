@@ -72,7 +72,7 @@ class HistoryLogModelTest(TestCase):
         blog_log = HistoryLog.objects.get(source="1:BlogPost object (1)")
         
         # assertions
-        self.assertEqual(str(user_log), "1:BlogUser object (1) - User created")
-        self.assertEqual(str(category_log), "1:Category object (1) - Category created")
-        self.assertEqual(str(blog_log), "1:BlogPost object (1) - Blog created")
+        self.assertEqual(str(user_log), "HistoryLog: 1:BlogUser object (1) - User created")
+        self.assertEqual(str(category_log), "HistoryLog: 1:Category object (1) - Category created")
+        self.assertEqual(str(blog_log), "HistoryLog: 1:BlogPost object (1) - Blog created")
     
