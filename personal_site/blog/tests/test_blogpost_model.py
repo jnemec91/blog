@@ -5,7 +5,7 @@ from blog.utils.hashmaker import make_hash_from_model
 
 class BlogPostModelTest(TestCase):
     def setUp(self):
-        self.user = BlogUser.objects.create(email="test@test.test", password="testpassword", first_name="test", last_name="user")
+        self.user = BlogUser.objects.create_user(email="test@test.test", password="testpassword", first_name="test", last_name="user")
         self.category = Category.objects.create(name="test category")
         self.blog_post = BlogPost.objects.create(title="test title", content="test content", author=self.user, category=self.category)
 

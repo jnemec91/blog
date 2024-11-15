@@ -18,7 +18,7 @@ class TestHashmakerUtil(TestCase):
         self.assertEqual(make_32_bit_hash(pk, string), '6c58ecf636ac0ebfdb3cc7b1ceabd42b')
     
     def test_make_hash_from_model(self):
-        user = BlogUser.objects.create(email="test@test.test", password="test")
+        user = BlogUser.objects.create_user(email="test@test.test", password="test")
         self.assertEqual(make_hash_from_model(user), '42ca2ecf0492a53883f851489ab164b8')
 
         category = Category.objects.create(name="test")

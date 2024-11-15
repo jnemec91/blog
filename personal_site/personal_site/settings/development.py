@@ -115,15 +115,17 @@ USE_I18N = True
 
 USE_TZ = True
 
+# media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 STATIC_URL = 'static/'
 STATICFILES_DIR = BASE_DIR / 'static'
 STATICFILES_DIRS = [
     STATICFILES_DIR,
-    BASE_DIR / 'blog' / 'static', # is necessary to add this line to make the static files work, after running collectstatic command, the static files will be copied to the static folder in the root directory
+    MEDIA_ROOT,
 ]
 
 # Default primary key field type

@@ -14,7 +14,6 @@ class TestaboutView(TestCase):
     def test_about_view(self):
         response = self.client.get(reverse('blog:about'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'blog/about.html')
     
     def test_about_view_template(self):
         response = self.client.get(reverse('blog:about'))

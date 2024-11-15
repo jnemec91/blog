@@ -12,7 +12,7 @@ class TestUserModel(TestCase):
 
         # create a user
         User = get_user_model()
-        User.objects.create(email="new@test.test", password="testpassword", first_name="new", last_name="user")        
+        User.objects.create_user(email="new@test.test", password="testpassword", first_name="new", last_name="user")        
 
     def test_user_create(self):
         # get the user

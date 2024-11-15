@@ -14,7 +14,6 @@ class TestHomeView(TestCase):
     def test_home_view(self):
         response = self.client.get(reverse('blog:home'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'blog/home.html')
     
     def test_home_view_template(self):
         response = self.client.get(reverse('blog:home'))
