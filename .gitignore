@@ -1,3 +1,4 @@
 /venv
 __pycache__
 dev_db.sqlite3
+personal_site/personal_site/media/
