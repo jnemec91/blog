@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse, resolve
 from blog.models import Category, BlogPost, BlogUser
 from blog.views import category
+from django.core.paginator import Page
 
 
 class TestCategoryView(TestCase):
@@ -31,7 +32,11 @@ class TestCategoryView(TestCase):
         response = self.client.get(reverse('blog:category', args=[self.category.hash_field]))
         self.assertEqual(response.context['category'], self.category)
         self.assertTrue(self.post in response.context['posts'])
-        self.assertEqual(response.context['posts'].first().title, 'Test Post')
-        self.assertEqual(response.context['posts'].first().content, 'Test Content')
-        self.assertEqual(response.context['posts'].first().category, self.category)
-        self.assertEqual(response.context['posts'].first().author, self.user)
+
+        # assert page object is returned 
+        self.assertTrue(isinstance(response.context['posts'], Page))
+
+        self.assertEqual(response.context['posts'][0].title, 'Test Post')
+        self.assertEqual(response.context['posts'][0].content, 'Test Content')
+        self.assertEqual(response.context['posts'][0].category, self.category)
+        self.assertEqual(response.context['posts'][0].author, self.user)
