@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib.auth import logout as auth_logout
 from django.core.paginator import Paginator
 from blog.models import BlogUser, BlogPost, Category, HistoryLog
+from blog.forms.LoginForm import LoginForm
 
 
 def index(request):
@@ -12,6 +14,10 @@ def home(request):
 
 def about(request):
     return render(request, 'blog/about.html')
+
+def latest(request):
+    latest_post = BlogPost.objects.latest('created_at')
+    return post(request, latest_post.hash_field)
 
 def posts(request, search_phrase=None, category=None):
     if category:
@@ -44,3 +50,20 @@ def post(request, post_hash):
 
 def update_navbar(request):
     return render(request, 'blog/components/navbar.html', {'categories': Category.objects.all()})
+
+def login(request):
+    form = LoginForm(request.POST or None)
+    if form.is_valid(request):
+        user = form.login(request)
+        if user:
+            HistoryLog.objects.create(source=user, action='login')
+            return redirect('blog:home')
+        
+    return render(request, 'blog/login.html', {'form': form})
+
+def logout(request):
+    auth_logout(request)
+    HistoryLog.objects.create(source=request.user, action='logout')
+    
+        
+    return redirect('blog:home')
