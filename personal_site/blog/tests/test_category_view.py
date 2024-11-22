@@ -10,7 +10,7 @@ class TestCategoryView(TestCase):
         self.client = Client()
         self.category = Category.objects.create(name='Test Category', description='Test Description')
         self.user = BlogUser.objects.create_user(email='test@test.test', password='testpassword')
-        self.post = BlogPost.objects.create(title='Test Post', content='Test Content', category=self.category, author=self.user)
+        self.post = BlogPost.objects.create(title='Test Post', content='Test Content', category=self.category, author=self.user, is_published=True)
 
     def test_category_view(self):
         response = self.client.get(reverse('blog:category', args=[self.category.hash_field]))

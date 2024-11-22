@@ -83,6 +83,7 @@ class BlogPost(models.Model):
     image = models.ImageField(_("image"), upload_to="blog_images", blank=True) # title image for the blog page
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=False)
     hash_field = models.CharField(_("hash field"), max_length=32, blank=True)
+    is_published = models.BooleanField(_("is published"), default=False)
 
     def __str__(self):
         return f'BlogPost: {self.title}'

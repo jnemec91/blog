@@ -20,6 +20,7 @@ class TestpostsView(TestCase):
             content='testcontent',
             category=self.category,
             author=self.user,
+            is_published=True,
         )
         self.client = Client()
     
