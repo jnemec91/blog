@@ -1,0 +1,149 @@
+.post{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    width: calc(50% - 2rem);
+    border: var(--border-color) 2px solid;
+    height: 30vh;
+    position: relative;
+}
+
+.post:hover{
+    background-color: var(--foreground-hover);
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.post:hover h2, .post:hover p{
+    color: black;
+}
+
+
+.no-image{
+    background-color: var(--background-color-2);
+    color: var(--foreground-color);
+}
+
+.post .no-image:hover h2, .post .no-image:hover p{
+    color: var(--foreground-color);
+}
+
+
+
+.post h2{
+    padding-left: 1rem;
+}
+
+
+.post p{
+    padding-left: 1rem;
+}
+    
+.post-list-image{
+    width: calc(100%);
+    height: 100%;
+    min-width: 100px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.post-title{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+.post-description{
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+}
+
+.post-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.buttons-div{
+    margin-top: calc(100px + 1rem);
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-button{
+    width: 4rem;
+    height: 4rem;
+    font-size: 50px;
+    padding-bottom: 4rem;
+    text-align: center;
+    border: 2px solid var(--border-color);
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+    font-family: 'Fixedsys Excelsior 3.01';
+    display: inline-block;
+    cursor: pointer;
+}
+
+.left{
+    margin-left: 1.5rem;
+    align-self: flex-start;
+}
+
+.right{
+    margin-right: 0.5rem;
+    align-self: flex-end;
+}
+
+.not-available{
+    background-color: var(--background-hover);
+    cursor: not-allowed;
+}
+
+.available:hover{
+    background-color: var(--foreground-hover);
+}
+
+@media screen and (max-width: 1220px){
+    .post{
+        width: calc(100% - 2rem);
+        margin-left: 0;
+        z-index: 1;
+    }
+
+    .buttons-div{
+        margin: 0;
+    }
+
+    .page-button{
+        height: 30vh;
+        width: 2rem;
+        font-size: 30px;
+        padding-bottom: 1rem;
+        border-color: transparent;
+        border-radius: 10px;
+        z-index: 99;
+        position: fixed;
+    }
+
+    .left{
+        top: 30vh;
+        left: 0;
+    }
+
+    .right{
+        top: 30vh;
+        right: 0;
+    }
+
+    .post-list{
+        margin-top: calc(100px + 6rem);
+    }
+
+    .left{
+        margin-left: 0;
+    }
+    
+}

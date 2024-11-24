@@ -1,5 +1,5 @@
 from django import forms
-from blog.models import Category, HistoryLog
+from blog.models import Category
 
 class CategoryForm(forms.ModelForm):
     class Meta:
@@ -9,10 +9,8 @@ class CategoryForm(forms.ModelForm):
     def save(self):
         if self.instance.pk is None:
             super().save()
-            HistoryLog.objects.create(source=f'{self.instance}', action='create')
         else:
             super().save()
-            HistoryLog.objects.create(source=f'{self.instance}', action='update')
 
         return self.instance
 

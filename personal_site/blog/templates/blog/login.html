@@ -1,0 +1,32 @@
+{% load static %}
+
+{% block content %}
+<div id="page_content" class="page_content">
+    <!-- This is line for testing purposes. TEMPLATE: login.html -->
+    <div id="page-text">
+        <div class="post-detail">
+            <div class="top-bar">
+                <div class="title-bar">
+                    <h1>Login</h1>
+                </div>
+            </div>
+            <form
+                id="login_form"
+                hx-post="{% url 'blog:login' %}"
+                hx-swap="outerHTML"
+                hx-target="#page_content"            
+                >
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button
+                    type="submit"
+                    class="search-button"
+                    >
+                    Login
+                </button>
+            </form>
+        </div>
+    </div>
+</div>    
+
+{% endblock %}

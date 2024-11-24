@@ -36,9 +36,12 @@ class BlogUser(AbstractBaseUser, PermissionsMixin):
     
     def save(self, *args, **kwargs):
         if self.pk is None:
-            HistoryLog.objects.create(source=f'{self.pk}:{self}', action="User created")
+            HistoryLog.objects.create(source=f'NEW:{self}', action="User created")
         else:
-            HistoryLog.objects.create(source=f'{self.pk}:{self}', action="User updated")
+            if kwargs.get("update_fields"):
+                if not "last_login" in kwargs.get("update_fields"):
+                    HistoryLog.objects.create(source=f'{self.pk}:{self}', action="User updated")
+            
         super().save(*args, **kwargs)
         # fill the hash field with 32 bit hash value created from id and str representation of the object
         self.hash_field = make_hash_from_model(self)
@@ -61,7 +64,7 @@ class Category(models.Model):
 
     def save(self, *args, **kwargs):
         if self.pk is None:
-            HistoryLog.objects.create(source=f'{self.pk}:{self}', action="Category created")
+            HistoryLog.objects.create(source=f'NEW:{self}', action="Category created")
         else:
             HistoryLog.objects.create(source=f'{self.pk}:{self}', action="Category updated")
         super().save(*args, **kwargs)
@@ -84,13 +87,15 @@ class BlogPost(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=False)
     hash_field = models.CharField(_("hash field"), max_length=32, blank=True)
     is_published = models.BooleanField(_("is published"), default=False)
+    stats = models.OneToOneField("Stats", on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return f'BlogPost: {self.title}'
 
     def save(self, *args, **kwargs):
         if self.pk is None:
-            HistoryLog.objects.create(source=f'{self.pk}:{self}', action="Blog created")
+            self.stats = Stats.objects.create()
+            HistoryLog.objects.create(source=f'NEW:{self}', action="Blog created")
         else:
             HistoryLog.objects.create(source=f'{self.pk}:{self}', action="Blog updated")
         super().save(*args, **kwargs)
@@ -110,3 +115,14 @@ class HistoryLog(models.Model):
 
     def __str__(self):
         return f"HistoryLog: {self.source} - {self.action}"
+    
+class Stats(models.Model):
+    def default_dict():
+        return {'sessions':[]}
+
+    likes = models.IntegerField(_("likes"), default=0)
+    dislikes = models.IntegerField(_("dislikes"), default=0)
+    views = models.IntegerField(_("views"), default=0)
+    visited = models.JSONField(_("visited sessions"), default=default_dict)
+    voted = models.JSONField(_("voted sessions"), default=default_dict)
+    

@@ -1,0 +1,17 @@
+{% load static %}
+<div id="page-text">
+    <div class="post-detail">
+        <div class="top-bar">
+            <div class="title-bar">
+                <h1>{{ post.title }}</h1>
+            </div>
+        </div>
+        {% if post.image %}
+            <img class="post-image" src="{% static post.image %}" alt="">
+        {% endif %}
+    
+        <p>{{ post.category }}</p>
+        <p>{{ post.created_at }}</p>
+        {{ post.content|safe }}
+    </div>
+</div>

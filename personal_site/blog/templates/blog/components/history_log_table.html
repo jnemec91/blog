@@ -1,0 +1,39 @@
+{% for log in logs %}
+<!-- This is line for testing purposes. TEMPLATE: history_log_table.html -->
+<tr
+    class="post-row"
+    hx-get=""
+    hx-target="#post-preview"
+    hx-swap="innerHTML"
+    hx-trigger="click"
+    >
+    <td>{{ log.source }}</td>
+    <td>{{ log.action }}</td>
+    <td>{{ log.created_at }}</td>
+
+</tr>
+<!-- if post is last, add scrollover htmx trigger to load next 20 -->
+{% if forloop.last %}
+<tr
+    hx-get="{% url 'blog:get_history_log_table_part' last_id=log.pk %}"
+    hx-swap="beforeend"
+    hx-trigger="intersect once"
+    hx-target="#post-table-body"
+    >
+</tr>
+{% endif %}
+{% endfor %}
+<script>
+    var table = document.querySelector('#history_log');
+    table.classList.add('long');
+
+    var allPostRows = document.querySelectorAll('.post-row');
+    allPostRows.forEach(row => {
+        row.addEventListener('click', () => {
+            allPostRows.forEach(row => {
+                row.classList.remove('table-selected');
+            });
+            row.classList.add('table-selected');
+        });
+    });
+</script>

@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta lang="en">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blog</title>
+
+        <!-- link htmx -->
+        <script type="text/javascript" src="{% static '/blog/js/htmx.min.js' %}"></script>
+
+        <!-- link css files -->
+        <link rel="stylesheet" href="{% static '/blog/css/base-scheme.css' %}">
+        <link rel="stylesheet" href="{% static '/blog/css/app.css' %}">
+        <link rel="stylesheet" href="{% static '/blog/css/navbar.css' %}">
+        <link rel="stylesheet" href="{% static '/blog/css/about.css' %}">
+
+        <link rel="stylesheet" href="{% static '/blog/css/post-detail.css' %}">
+        <link rel="stylesheet" href="{% static '/blog/css/post-list.css' %}">
+        <link rel="stylesheet" href="{% static '/blog/css/post_admin.css' %}">
+
+        <link rel="stylesheet" href="{% static '/blog/css/search.css' %}">
+        <link rel="stylesheet" href="{% static '/blog/css/login.css' %}">
+
+        <!-- link js files -->
+        <script type="text/javascript" src="{% static '/blog/js/efects/typing.js' %}"></script>
+        <script type="text/javascript" src="{% static '/blog/js/efects/toggleNavbar.js' %}"></script>
+        
+        <script src="{% static 'blog/js/htmlParser.js' %}"></script>
+        <script src="{% static 'blog/js/maximizeTextarea.js' %}"></script>
+
+        <script type="text/javascript" src="{% static '/blog/js/navbarUpdate.js' %}"></script>
+        <script type="text/javascript" src="{% static '/blog/js/search_url.js' %}"></script>
+
+        <script src="https://kit.fontawesome.com/178cd86837.js" crossorigin="anonymous"></script>
+
+    </head>
+    <body
+        hx-trigger="load"
+        hx-target="#navbar-wrap"
+        hx-swap="innerHTML"
+        hx-get="{% url 'blog:update_navbar' %}"
+        >
+    
+        <!-- This is line for testing purposes. TEMPLATE: index.html -->
+        <div id="navbar-wrap">
+
+        </div>
+
+        {% include 'blog/home.html' %}
+    </body>
+</html>

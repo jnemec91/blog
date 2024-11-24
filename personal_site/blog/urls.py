@@ -22,6 +22,9 @@ urlpatterns = [
     path('category_edit/', views.category_edit, name='category_edit'),
     path('categories_edit/<str:category_hash>/', views.category_edit, name='category_edit'),
     path('category_delete/<str:category_hash>/', views.category_delete, name='category_delete'),
+    path('history_log/', views.history_log, name='history_log'),
+    path('stats/', views.stats, name='stats'),
+
 
     # ajax views
     path('update_navbar/', views.update_navbar, name='update_navbar'),
@@ -29,6 +32,10 @@ urlpatterns = [
     path('get_posts_table/<int:last_id>', views.get_posts_table_part, name='get_posts_table_part'),
     path('get_categories_table/', views.get_categories_table_part, name='get_categories_table_part'),
     path('get_categories_table/<int:last_id>', views.get_categories_table_part, name='get_categories_table_part'),
+    path('get_history_log_table_part/', views.get_history_log_table_part, name='get_history_log_table_part'),
+    path('get_history_log_table_part/<int:last_id>/', views.get_history_log_table_part, name='get_history_log_table_part'),
+    path('like_post/<str:post_hash>/<str:like_type>/', views.like_post, name='like_post'),
+    path('post_footer/<str:post_hash>/', views.post_footer, name='post_footer'),
 
     # auth views
     path('login/', views.login, name='login'),

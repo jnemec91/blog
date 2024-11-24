@@ -1,0 +1,48 @@
+{% for category in categories %}
+<!-- This is line for testing purposes. TEMPLATE: category_table.html -->
+<tr
+    class="post-row"
+    hx-get=""
+    hx-target="#post-preview"
+    hx-swap="innerHTML"
+    hx-trigger="click"
+    >
+    <td>{{ category.name }}</td>
+    <td>{{ category.description }}</td>
+    <td>{{ category.created_at }}</td>
+    <td>{{ category.updated_at }}</td>
+    <td>
+        <a
+            hx-get="{% url 'blog:category_edit' category_hash=category.hash_field %}"
+            hx-target="#page_content"
+            hx-swap="outerHTML"
+        >
+            Update
+        </a>
+    </td>
+</tr>
+<!-- if post is last, add scrollover htmx trigger to load next 20 -->
+{% if forloop.last %}
+<tr
+    hx-get="{% url 'blog:get_categories_table_part' last_id=category.pk %}"
+    hx-swap="beforeend"
+    hx-trigger="intersect once"
+    hx-target="#post-table-body"
+    >
+</tr>
+{% endif %}
+{% endfor %}
+<script>
+    var table = document.querySelector('#categories');
+    table.classList.add('long');
+
+    var allPostRows = document.querySelectorAll('.post-row');
+    allPostRows.forEach(row => {
+        row.addEventListener('click', () => {
+            allPostRows.forEach(row => {
+                row.classList.remove('table-selected');
+            });
+            row.classList.add('table-selected');
+        });
+    });
+</script>

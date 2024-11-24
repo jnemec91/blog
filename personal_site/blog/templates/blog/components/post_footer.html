@@ -1,0 +1,29 @@
+<div class="certificates row" id="post_footer">
+    {% if voted %}
+    <h2>You`ve already voted.</h2>
+    <button
+        class="like-button not-available"
+    >
+        <i class="fa fa-thumbs-up"></i> Likes {{ post.stats.likes }}
+    </button>
+    <button
+        class="like-button not-available"
+    >
+        <i class="fa fa-thumbs-down"></i> Dislikes {{ post.stats.dislikes }}
+    </button>
+    {% else %}
+    <h2>Vote how you feel about this post.</h2>
+    <button
+        class="like-button available"
+        hx-get="{% url 'blog:like_post' post_hash=post.hash_field like_type='like' %}"
+    >
+        <i class="fa fa-thumbs-up"></i> Like
+    </button>
+    <button
+        class="like-button available"
+        hx-get="{% url 'blog:like_post' post_hash=post.hash_field like_type='dislike' %}"
+    >
+        <i class="fa fa-thumbs-down"></i> Dislike
+    </button>
+    {% endif %}
+</div>

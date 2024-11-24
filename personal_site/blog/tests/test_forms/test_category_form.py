@@ -21,12 +21,12 @@ class TestCategoryForm(TestCase):
         form.is_valid()
         category = form.save()
         self.assertTrue(Category.objects.filter(name='test_save').exists())
-        self.assertTrue(HistoryLog.objects.filter(source=category, action='create').exists())
+        self.assertTrue(HistoryLog.objects.filter(source=f'NEW:{category}', action='Category created').exists())
     
     def test_category_form_update(self):
         form = CategoryForm(instance=self.category, data={'name': 'test_update', 'description': 'test'},)
         form.is_valid()
         form.save()
         self.assertTrue(Category.objects.filter(name='test_update').exists())
-        self.assertTrue(HistoryLog.objects.filter(source=self.category, action='update').exists())
+        self.assertTrue(HistoryLog.objects.filter(source=f'{self.category.pk}:{self.category}', action='Category updated').exists())
     

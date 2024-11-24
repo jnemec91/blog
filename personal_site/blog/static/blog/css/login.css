@@ -1,0 +1,46 @@
+#login_form{
+    position: relative;
+    width: 33%;
+    height: calc(88vh - 100px);
+    margin: auto 33%;
+}
+
+#login_form label{
+    display: block;
+}
+
+#login_form input{
+    width: calc(80% - 3rem);
+    height: 1rem;
+    padding: 0.5rem;
+    border: 2px solid var(--border-color);
+    display: inline-block;
+    margin-left: 0;
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+    caret-color: var(--border-color);
+    caret-shape: block;
+}
+
+#login_form input:focus{
+    background-color: var(--background-color);
+    border: 2px solid var(--border-color);
+}
+
+#login_form button{
+    width: calc(80% - 3rem);
+    height: calc(2rem + 3px);
+    padding: 0.5rem;
+    text-align: center;
+    border: 2px solid var(--border-color);
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+    font-family: 'Fixedsys Excelsior 3.01';
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+#login_form button:hover{
+    background-color: var(--foreground-hover);
+}

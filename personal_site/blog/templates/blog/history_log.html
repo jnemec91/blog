@@ -1,0 +1,39 @@
+{% load static %}
+
+{% block page_content %}
+    <div class="page_content" id="page_content">
+        <!-- This is line for testing purposes. TEMPLATE: history_log.html -->
+        <div id="page-text">
+            <div class="post-detail">
+                <div class="top-bar">
+                    <div class="title-bar">
+                        <h1>History Log</h1>
+                    </div>
+                </div>
+                <div class="page-wrapper">
+                    <div class="post-admin-list" id="history_log">
+                        <table
+                            hx-get="{% url 'blog:get_history_log_table_part' %}"
+                            hx-swap="beforeend"
+                            hx-trigger="load"
+                            hx-target="#post-table-body"
+                        >
+                            <thead>
+                                <tr>
+                                    <th>Source</th>
+                                    <th>Action</th>
+                                    <th>Created at</th>
+                                </tr>
+                            </thead>
+                            <tbody
+                                id="post-table-body"
+                            >
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

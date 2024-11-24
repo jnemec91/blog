@@ -1,5 +1,5 @@
 from django import forms
-from blog.models import BlogPost, Category, BlogUser, HistoryLog
+from blog.models import BlogPost, Category, BlogUser
 
 
 class BlogPostForm(forms.ModelForm):
@@ -11,11 +11,9 @@ class BlogPostForm(forms.ModelForm):
         if self.instance.pk is None:
             self.instance.author = self.user
             super().save()
-            HistoryLog.objects.create(source=f'{self.instance}', action='create')
             
         else:
             super().save(self.instance)
-            HistoryLog.objects.create(source=f'{self.instance}', action='update')
         
         return self.instance
 

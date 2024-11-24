@@ -1,0 +1,72 @@
+{% for post in posts %}
+<!-- This is line for testing purposes. TEMPLATE: post_table.html -->
+<tr
+    class="post-row"
+    hx-get="{% url 'blog:post' post.hash_field %}"
+    hx-target="#post-preview"
+    hx-swap="innerHTML"
+    hx-trigger="click"
+    >
+    <td>{{ post.title }}</td>
+    <td>{{ post.created_at }}</td>
+    <td>{{ post.updated_at }}</td>
+    <td>{{ post.is_published }}</td>
+    <td>
+        <a
+            hx-get="{% url 'blog:post_edit' post.hash_field %}"
+            hx-target="#page_content"
+            hx-swap="outerHTML"
+        >
+            Update
+        </a>
+    </td>
+</tr>
+<!-- if post is last, add scrollover htmx trigger to load next 20 -->
+{% if forloop.last %}
+<tr
+    hx-get="{% url 'blog:get_posts_table_part' last_id=post.pk %}"
+    hx-swap="beforeend"
+    hx-trigger="intersect once"
+    hx-target="#post-table-body"
+    >
+</tr>
+{% endif %}
+{% endfor %}
+<script>
+    var jsScrolling = false;
+    var table = document.querySelector('#post-admin');
+    var preview = document.querySelector('#post-preview');
+
+    table.classList.add('long');
+    preview.classList.add('hidden');
+
+
+    table.addEventListener('scroll', (e) => {
+        if (jsScrolling) {
+            return;
+        }
+        table.classList.add('long');
+        preview.classList.add('hidden');
+    }); 
+
+    var allPostRows = document.querySelectorAll('.post-row');
+    allPostRows.forEach(row => {
+        row.addEventListener('click', () => {
+            table.classList.remove('long');
+            preview.classList.remove('hidden');
+
+            allPostRows.forEach(row => {
+                row.classList.remove('table-selected');
+            });
+            row.classList.add('table-selected');
+            jsScrolling = true;
+            setTimeout(() => {
+                row.scrollIntoView({behavior: "smooth", block: "center"});
+            }, 500);
+            setTimeout(() => {
+                jsScrolling = false;
+            }, 2000);
+
+        });
+    });
+</script>

@@ -1,0 +1,33 @@
+/* color scheme in variables */
+:root {
+    --foreground-color: #FFF1F1F1;
+    --background-color: #000010e5;
+    --background-color-2: #00003de5;
+    --foreground-hover: #8ae2ffcc;
+    --background-hover: #FF3E3E40;
+    /* vs code light blue border color */
+    --border-color: #007acc;
+
+}
+
+@font-face {
+    font-family: 'Fixedsys Excelsior 3.01';
+    src: url('/static/blog/fonts/FSEX300.ttf');
+}
+
+.black{
+    color: black;
+}
+
+.red{
+    color: crimson!important;
+}
+
+code{
+    display: inline-block;
+    color: black;
+    background-color: lightgray;
+    padding: 0.2rem;
+    line: 0.5rem;
+    max-width: 100%;
+}

@@ -1,0 +1,52 @@
+{% load static %}
+
+{% block page_content %}
+    <div class="page_content" id="page_content">
+        <!-- This is line for testing purposes. TEMPLATE: posts_admin.html -->
+        <div id="page-text">
+            <div class="post-detail">
+                <div class="top-bar">
+                    <div class="title-bar">
+                        <h1>Posts Administration</h1>
+                    </div>
+                </div>
+                <div class="page-wrapper">
+                    <div class="post-admin-list" id="post-admin">
+                        <table
+                            hx-get="{% url 'blog:get_posts_table_part' %}"
+                            hx-swap="beforeend"
+                            hx-trigger="load"
+                            hx-target="#post-table-body"
+                        >
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Created</th>
+                                    <th>Last updated</th>
+                                    <th>Is published</th>
+                                    <th>
+                                        <a
+                                        hx-get="{% url 'blog:post_edit' %}"
+                                        hx-target="#page_content"
+                                        hx-swap="outerHTML"
+                                        >
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody
+                                id="post-table-body"
+                            >
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="post-preview hidden preview-initial" id="post-preview">
+                        <h1 class="preview-heading">Preview</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

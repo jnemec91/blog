@@ -1,0 +1,18 @@
+{% load static %}
+
+{% block content %}
+<div
+    id="page_content"
+    class="page_content"
+    hx-get="{% url 'blog:post_footer' post.hash_field %}"
+    hx-swap="outerHTML"
+    hx-target="#post_footer"
+    hx-trigger="load"
+    >
+    <!-- This is line for testing purposes. TEMPLATE: post_detail.html -->
+    {% include 'blog/components/post_view.html' %}
+    <div id="post_footer">
+
+    </div>
+</div>    
+{% endblock %}

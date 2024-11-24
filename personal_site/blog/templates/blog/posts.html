@@ -1,0 +1,61 @@
+{% load static %}
+
+{% block page_content %}
+    <div class="page_content" id="page_content">
+        <!-- This is line for testing purposes. TEMPLATE: posts.html -->
+        <div class="top-bar">
+            <div class="title-bar">
+                <h1>Posts{% if category %}: {{category.name}}{% endif %}</h1>
+                <p>{% if category %}{{ category.description }}{% else %}All categories{% endif %}</p>
+            </div>
+        </div>
+        <div class="buttons-div">
+            <!-- django pagination -->
+            {% if posts.has_previous %}
+                <button
+                    class="page-button left available"
+                    hx-get="{{pagination_url}}?page={{ posts.previous_page_number }}"
+                    hx-target="#page_content"
+                    hx-swap="outerHTML"
+                    >
+                    &laquo;
+                </button>
+            {% else %}
+                <button class="page-button left not-available" disabled>&laquo;</button>
+            {% endif %}
+
+            {% if posts.has_next %}
+                <button
+                    class="page-button right  available"
+                    hx-get="{{pagination_url}}?page={{ posts.next_page_number }}"
+                    hx-target="#page_content"
+                    hx-swap="outerHTML"
+                    >
+                    &raquo;
+                </button>
+            {% else %}
+                <button class="page-button right not-available" disabled>&raquo;</button>
+            {% endif %}
+        </div>
+        <div id="page-text" class="post-list">
+            {% for post in posts %}
+            <div
+                {% if post.image %}class="post"{% else %}class="post no-image"{% endif %}
+                hx-get="{% url 'blog:post' post.hash_field %}"
+                hx-trigger="click"
+                hx-target="#page_content"
+                hx-swap="outerHTML"
+                >
+                <h2 class="post-title">{{ post.title }}</h2>
+                {% if post.image %}
+                    <img class="post-list-image" src="{% static post.image %}" alt="">
+                {% endif %}
+                <div class="post-description">
+                    <p>{{ post.category }}</p>
+                    <p>{{ post.created_at }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>                
+    </div>
+{% endblock %}
