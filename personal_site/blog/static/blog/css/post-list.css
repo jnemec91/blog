@@ -1,10 +1,9 @@
 .post{
-    margin-top: 1rem;
-    margin-left: 1rem;
-    width: calc(50% - 2rem);
+    width: calc(50% - 3rem);
     border: var(--border-color) 2px solid;
     height: 30vh;
     position: relative;
+    margin: 1rem;
 }
 
 .post:hover{
@@ -65,6 +64,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    padding: 1rem;
+    margin-top: 0.7rem;
+    border: var(--border-color) 2px solid;
 }
 
 .buttons-div{
@@ -108,8 +110,7 @@
 
 @media screen and (max-width: 1220px){
     .post{
-        width: calc(100% - 2rem);
-        margin-left: 0;
+        width: calc(100% - 3rem);
         z-index: 1;
     }
 
