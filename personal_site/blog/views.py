@@ -12,9 +12,6 @@ from blog.forms.CategoryForm import CategoryForm
 def index(request):
     return render(request, 'blog/index.html', {'categories': Category.objects.filter(blogpost__is_published=True).distinct()})
 
-def home(request):
-    return render(request, 'blog/home.html')
-
 def about(request):
     return render(request, 'blog/about.html')
 
@@ -93,7 +90,7 @@ def login(request):
         user = form.login(request)
         if user:
             HistoryLog.objects.create(source=f'{user.pk}:{user}', action='Login')
-            return redirect('blog:home')
+            return redirect('blog:index')
         
     return render(request, 'blog/login.html', {'form': form})
 
@@ -102,7 +99,7 @@ def logout(request):
     HistoryLog.objects.create(source=f'{request.user.pk}:{request.user}', action='Logout')
     auth_logout(request)
     
-    return redirect('blog:home')
+    return redirect('blog:index')
 
 @login_required
 def posts_admin(request):

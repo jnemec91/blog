@@ -10,23 +10,21 @@
         <div class="navbar-background collapsed" id="navbar-block">
             <ul class="navbar">
                 <li>
-                    <h2>Blog</h2>
-                </li>
-                <li>
-                    <p
+                    <h2
                         class="navbar-htmx-link"
-                        hx-get="{% url 'blog:home' %}"
+                        data-text="Gloody's Glitchground"
+                        hx-get="{% url 'blog:index' %}"
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
-
-                    >
-                        Home
-                    </p>
+                        >
+                        Gloody's Glitchground
+                    </h2>
                 </li>
                 <li>
                     <p
                         class="navbar-htmx-link"
+                        data-text="About me"
                         hx-get="{% url 'blog:about' %}"
                         hx-trigger="click"
                         hx-swap="outerHTML"
@@ -42,6 +40,7 @@
                 <li>
                     <p
                         class="navbar-htmx-link"
+                        data-text="Latest"
                         hx-get="{% url 'blog:post' latest %}"
                         hx-trigger="click"
                         hx-swap="outerHTML"
@@ -49,11 +48,10 @@
                     >
                         Latest
                     </p>
-                </li>
                 {% endif %}
-                <li>
                     <p
                         class="navbar-htmx-link"
+                        data-text="All posts"
                         hx-get="{% url 'blog:posts' %}"
                         hx-trigger="click"
                         hx-swap="outerHTML"
@@ -65,10 +63,11 @@
                 <li>
                     <h2>Categories</h2>
                 </li>
-                <li>
+                <li class="category-list">
                     {% for blog_category in categories %}
                         <p
                             class="navbar-htmx-link"
+                            data-text="{{ blog_category.name }}"
                             hx-get="{% url 'blog:category' blog_category.hash_field %}"
                             hx-trigger="click"
                             hx-swap="outerHTML"
@@ -83,6 +82,7 @@
                     <h2>Tools</h2>
                     <p
                         class="navbar-htmx-link"
+                        data-text="Posts"
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
@@ -92,6 +92,7 @@
                     </p>
                     <p
                         class="navbar-htmx-link"
+                        data-text="Categories"
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
@@ -101,6 +102,7 @@
                     </p>
                     <p
                         class="navbar-htmx-link"
+                        data-text="Log"
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
@@ -110,6 +112,7 @@
                     </p>
                     <p 
                         class="navbar-htmx-link"
+                        data-text="Stats"
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
@@ -119,6 +122,7 @@
                     </p>               
                     <p
                         class="red navbar-htmx-link"
+                        data-text="Logout"
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
@@ -131,6 +135,7 @@
                 <li id="edit-nav">
                     <p
                         class="navbar-htmx-link"
+                        data-text="Login"
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
@@ -152,6 +157,7 @@
                         <input type="text" name="search" class="search-input" id="search-input">
                     </div>
                 </li>
+                <div style="margin-bottom: 5em;"></div>
             </ul>
         </div>
     </div>
