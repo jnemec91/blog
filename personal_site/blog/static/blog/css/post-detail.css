@@ -36,6 +36,10 @@
     margin-bottom: 2rem;
 }
 
+.center{
+    text-align: center;
+}
+
 @media screen and (max-width: 1220px){
     .post-detail{
         margin-top: calc(6rem + 100px);
