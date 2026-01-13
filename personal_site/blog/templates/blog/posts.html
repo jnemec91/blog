@@ -5,8 +5,8 @@
         <!-- This is line for testing purposes. TEMPLATE: posts.html -->
         <div class="top-bar">
             <div class="title-bar">
-                <h1>Posts{% if category %}: {{category.name}}{% endif %}</h1>
-                <p>{% if category %}{{ category.description }}{% else %}All categories{% endif %}</p>
+                <h1>Posts: {% if category %}{{category.name}}{% else %}All categories{% endif %}</h1>
+                <p>{% if category %}{{ category.description }}{% endif %}</p>
             </div>
         </div>
         <div class="buttons-div">
