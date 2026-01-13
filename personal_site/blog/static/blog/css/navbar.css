@@ -30,15 +30,14 @@
 
 .navbar > li > h2{
     padding-left: 1rem;
-    margin-bottom: 5px;
     user-select: none;
+    margin-bottom: -1rem;
 }
 
 .navbar > li > h2::after{
-    /* vertical line connecting to items below */
     content: '│';
-    position: absolute;
-    left: calc(1rem - 1px);
+    position: relative;
+    margin-left: -1px;
     color: var(--foreground-color);
     display: block;
     line-height: 1;
@@ -101,7 +100,6 @@ p .navbar-htmx-link::after {
 }
 
 .navbar > li > p::before{
-    /* file image with tree structure */
     content: '├ \1F4C4';
     color: var(--foreground-color);
     display: inline-block;
@@ -114,7 +112,6 @@ p .navbar-htmx-link::after {
 }
 
 .navbar > li > p::after{
-    /* vertical line extending down */
     content: '│';
     position: absolute;
     left: 1rem;
@@ -125,12 +122,10 @@ p .navbar-htmx-link::after {
 }
 
 .navbar > li > p:last-child::before{
-    /* last file with tree end */
     content: '└ \1F4C4';
 }
 
 .navbar > li > p:last-child::after{
-    /* no line after last item */
     content: '';
 }
 
