@@ -17,7 +17,11 @@
     height: 100%;
     width: 100%;
     overflow-y: scroll;
+    overflow-x: hidden;
     scrollbar-color: var(--border-color) var(--background-color-2);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .navbar > li{
@@ -26,23 +30,176 @@
 
 .navbar > li > h2{
     padding-left: 1rem;
+    margin-bottom: 5px;
+    user-select: none;
+}
+
+.navbar > li > h2::after{
+    /* vertical line connecting to items below */
+    content: '│';
+    position: absolute;
+    left: calc(1rem - 1px);
+    color: var(--foreground-color);
+    display: block;
+    line-height: 1;
+    font-weight: 100;
+    font-size: smaller;
 }
 
 .navbar-htmx-link{
-    padding-left: 2rem;
+    padding-left: 3.4rem;
     color: var(--foreground-color);
+}
+
+.navbar-htmx-link{
+    position: relative;
+    transition: color 0.3s ease;
 }
 
 .navbar-htmx-link:hover{
     color: var(--foreground-hover);
+    background-color: var(--background-hover);
     cursor: pointer;
-    background-color: var(--border-color);
+    animation: glitch 0.5s infinite;
+}
+
+h2 .navbar-htmx-link:hover::before,
+h2 .navbar-htmx-link:hover::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+p .navbar-htmx-link::before,
+p .navbar-htmx-link::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 2rem;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.navbar-htmx-link:hover::before {
+    color: #ff0000;
+    animation: glitch-shadow 0.15s ease-in-out;
+    transform: translateX(2px);
+    opacity: 0.8;
+}
+
+.navbar-htmx-link:hover::after {
+    color: #00ffff;
+    transform: translateX(-2px);
+    opacity: 0.8;
+}
+
+.navbar > li > p::before{
+    /* file image with tree structure */
+    content: '├ \1F4C4';
+    color: var(--foreground-color);
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    top: -5px;
+    left: 1rem;
+    opacity: 1 !important;
+}
+
+.navbar > li > p::after{
+    /* vertical line extending down */
+    content: '│';
+    position: absolute;
+    left: 1rem;
+    top: 100%;
+    height: 100%;
+    color: var(--foreground-color);
+    opacity: 1 !important;
+}
+
+.navbar > li > p:last-child::before{
+    /* last file with tree end */
+    content: '└ \1F4C4';
+}
+
+.navbar > li > p:last-child::after{
+    /* no line after last item */
+    content: '';
+}
+
+#edit-nav::after{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 25%;
+}
+
+@keyframes glitch {
+    0%, 100% {
+        text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                     -0.05em -0.025em 0 rgba(0, 255, 255, 0.75),
+                     0.025em 0.05em 0 rgba(255, 255, 0, 0.75);
+    }
+    15% {
+        text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                     -0.05em -0.025em 0 rgba(0, 255, 255, 0.75),
+                     0.025em 0.05em 0 rgba(255, 255, 0, 0.75);
+    }
+    16% {
+        text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+                     0.025em 0.025em 0 rgba(0, 255, 255, 0.75),
+                     -0.05em -0.05em 0 rgba(255, 255, 0, 0.75);
+    }
+    49% {
+        text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+                     0.025em 0.025em 0 rgba(0, 255, 255, 0.75),
+                     -0.05em -0.05em 0 rgba(255, 255, 0, 0.75);
+    }
+    50% {
+        text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+                     0.05em 0 0 rgba(0, 255, 255, 0.75),
+                     0 -0.05em 0 rgba(255, 255, 0, 0.75);
+    }
+    99% {
+        text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+                     0.05em 0 0 rgba(0, 255, 255, 0.75),
+                     0 -0.05em 0 rgba(255, 255, 0, 0.75);
+    }
+}
+
+@keyframes glitch-shadow {
+    0%, 31%, 61%, 100% {
+        transform: translate(0);
+    }
+    10%, 30% {
+        transform: translate(-5px, -2px);
+    }
+    20% {
+        transform: translate(-10px, 2px);
+    }
+    35%, 60% {
+        transform: translate(7px, -1px);
+    }
+    40% {
+        transform: translate(-2px, 8px);
+    }
+    50% {
+        transform: translate(-7px, 3px);
+    }
 }
 
 #edit-nav{
-    position: absolute;
+    /* position: absolute;
     bottom: 4rem;
-    left: 0;
+    left: 0; */
+    align-self: flex-end;
 }
 
 #toggle-navbar{
@@ -57,12 +214,8 @@
         z-index: 9998;
     }
 
-    .navbar{
-        width: 100%;
-    }
-
     .navbar-htmx-link{
-        padding-left: 1rem;
+        padding-left: 3.4rem;
     }
 
     .collapsed{
