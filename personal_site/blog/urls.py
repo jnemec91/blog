@@ -7,6 +7,7 @@ urlpatterns = [
     # views
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
+    path('home/', views.home, name='home'),
     path('posts/', views.posts, name='posts'),
     path('posts/<str:search_phrase>/', views.posts, name='posts'),
     path('category/<str:category_hash>/', views.category, name='category'),

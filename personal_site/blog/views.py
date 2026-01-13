@@ -12,6 +12,9 @@ from blog.forms.CategoryForm import CategoryForm
 def index(request):
     return render(request, 'blog/index.html', {'categories': Category.objects.filter(blogpost__is_published=True).distinct()})
 
+def home(request):
+    return render(request, 'blog/home.html')
+
 def about(request):
     return render(request, 'blog/about.html')
 
