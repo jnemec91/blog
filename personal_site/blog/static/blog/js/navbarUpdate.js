@@ -9,7 +9,7 @@ document.addEventListener('htmx:afterSwap', function (event) {
         if (navbar) {
             // console.log('updating navbar')
             // use htmx ajax to get the navbar from the server, and swap content in #navbar-block
-            htmx.ajax('GET', '/update_navbar', {target:'#navbar-wrap', swap:'innerHTML'});
+            htmx.ajax('GET', '/update_navbar', {target:'#navbar-wrap', swap:'outerHTML'});
         }
     }
 })

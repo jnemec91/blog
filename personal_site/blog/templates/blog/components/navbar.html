@@ -13,7 +13,7 @@
                     <h2
                         class="navbar-htmx-link"
                         data-text="Gloody's Glitchground"
-                        hx-get="{% url 'blog:index' %}"
+                        hx-get="{% url 'blog:home' %}"
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
@@ -131,9 +131,9 @@
                         Logout
                     </p>
                 </li>
-                {% else %}
+                {% else %}                               
                 <li id="edit-nav">
-                <h2>Tools</h2>                    
+                    <h2>Tools</h2>                    
                     <p
                         class="navbar-htmx-link"
                         data-text="Login"
@@ -142,7 +142,7 @@
                         hx-target="#page_content"
                         hx-get="{% url 'blog:login' %}"
                     >
-                    Login  
+                    Login
                     </p>
                 </li>
                 {% endif %}
