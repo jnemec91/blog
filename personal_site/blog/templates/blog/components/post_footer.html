@@ -19,6 +19,7 @@
     >
         <i class="fa fa-thumbs-up"></i> Like
     </button>
+    <br>
     <button
         class="like-button available"
         hx-get="{% url 'blog:like_post' post_hash=post.hash_field like_type='dislike' %}"
