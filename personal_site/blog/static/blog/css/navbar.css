@@ -152,10 +152,7 @@ p .navbar-htmx-link::after {
 #language option{
     background-color: var(--background-color-2);
     color: var(--foreground-color);
-}
-
-#language option:hover{
-box-shadow: 100px 100px 100px 100px var(--background-hover) inset!important;
+    border: none;
 }
 
 @keyframes glitch {
