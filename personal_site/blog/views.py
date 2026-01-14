@@ -18,6 +18,9 @@ def home(request):
 def about(request):
     return render(request, 'blog/about.html')
 
+def about_redirect(request):
+    return redirect('blog:about')
+
 def samba(request):
     return render(request, 'blog/samba.html')
 
@@ -90,12 +93,19 @@ def like_post(request, post_hash, like_type):
     
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('blog:home')
+    
     form = LoginForm(request.POST or None)
     if form.is_valid(request):
         user = form.login(request)
         if user:
             HistoryLog.objects.create(source=f'{user.pk}:{user}', action='Login')
-            return redirect('blog:index')
+            print(request.POST)
+            if 'next' in request.POST:
+                return redirect(request.POST['next'])
+            
+            return redirect('blog:home')
         
     return render(request, 'blog/login.html', {'form': form})
 
@@ -104,7 +114,7 @@ def logout(request):
     HistoryLog.objects.create(source=f'{request.user.pk}:{request.user}', action='Logout')
     auth_logout(request)
     
-    return redirect('blog:index')
+    return redirect('blog:login')
 
 @login_required
 def posts_admin(request):

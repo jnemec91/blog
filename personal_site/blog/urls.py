@@ -1,11 +1,12 @@
 from django.urls import path
+
 from . import views
 
 app_name = 'blog'
 
 urlpatterns = [
     # views
-    path('', views.index, name='index'),
+    path('', views.about_redirect, name='about_redirect'),
     path('about/', views.about, name='about'),
     path('samba/', views.samba, name='samba'),    
     path('home/', views.home, name='home'),

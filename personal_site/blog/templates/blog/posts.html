@@ -1,6 +1,7 @@
-{% load static %}
+{% extends 'blog/index.html' %}
+{% load static i18n %}
 
-{% block page_content %}
+{% block content %}
     <div class="page_content" id="page_content">
         <!-- This is line for testing purposes. TEMPLATE: posts.html -->
         <div class="top-bar">
@@ -17,6 +18,8 @@
                     hx-get="{{pagination_url}}?page={{ posts.previous_page_number }}"
                     hx-target="#page_content"
                     hx-swap="outerHTML"
+                    hx-push-url="true"
+                    hx-boost="true"
                     >
                     &laquo;
                 </button>
@@ -30,6 +33,8 @@
                     hx-get="{{pagination_url}}?page={{ posts.next_page_number }}"
                     hx-target="#page_content"
                     hx-swap="outerHTML"
+                    hx-push-url="true"
+                    hx-boost="true"
                     >
                     &raquo;
                 </button>
@@ -45,6 +50,8 @@
                 hx-trigger="click"
                 hx-target="#page_content"
                 hx-swap="outerHTML"
+                hx-push-url="true"
+                hx-boost="true"
                 >
                 <h2 class="post-title">{{ post.title }}</h2>
                 {% if post.image %}

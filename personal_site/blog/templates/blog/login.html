@@ -1,4 +1,5 @@
-{% load static %}
+{% extends 'blog/index.html' %}
+{% load static i18n %}
 
 {% block content %}
 <div id="page_content" class="page_content">
@@ -14,7 +15,8 @@
                 id="login_form"
                 hx-post="{% url 'blog:login' %}"
                 hx-swap="outerHTML"
-                hx-target="#page_content"            
+                hx-target="#page_content"
+                hx-vals='{"next": "{{ request.GET.next }}"}'
                 >
                 {% csrf_token %}
                 {{ form.as_p }}

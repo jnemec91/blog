@@ -17,6 +17,8 @@
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
+                        hx-push-url="true"
+                        hx-boost="true"
                         >
                         Gloody's Glitchground
                     </h2>
@@ -29,6 +31,8 @@
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
+                        hx-push-url="true"
+                        hx-boost="true"
                     >
                         About me
                     </p>
@@ -39,6 +43,8 @@
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
+                        hx-push-url="true"
+                        hx-boost="true"
                     >
                         About Samba
                     </p>
@@ -54,6 +60,8 @@
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
+                        hx-push-url="true"
+                        hx-boost="true"
                     >
                         Latest
                     </p>
@@ -64,6 +72,8 @@
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
+                        hx-push-url="true"
+                        hx-boost="true"
                     >
                         All posts
                     </p>
@@ -80,6 +90,8 @@
                             hx-trigger="click"
                             hx-swap="outerHTML"
                             hx-target="#page_content"
+                            hx-push-url="true"
+                            hx-boost="true"
                         >
                             {{ blog_category.name }}
                         </p>
@@ -105,6 +117,8 @@
                         hx-swap="outerHTML"
                         hx-target="#page_content"
                         hx-get="{% url 'blog:posts_admin' %}"
+                        hx-push-url="true"
+                        hx-boost="true"
                     >
                         Posts
                     </p>
@@ -115,6 +129,8 @@
                         hx-swap="outerHTML"
                         hx-target="#page_content"
                         hx-get="{% url 'blog:categories_admin' %}"
+                        hx-push-url="true"
+                        hx-boost="true"
                     >
                         Categories
                     </p>
@@ -125,6 +141,8 @@
                         hx-swap="outerHTML"
                         hx-target="#page_content"
                         hx-get="{% url 'blog:history_log' %}"
+                        hx-push-url="true"
+                        hx-boost="true"
                     >
                         Log
                     </p>
@@ -135,6 +153,8 @@
                         hx-swap="outerHTML"
                         hx-target="#page_content"
                         hx-get="{% url 'blog:stats' %}"
+                        hx-push-url="true"
+                        hx-boost="true"
                     >
                         Stats
                     </p>               
@@ -144,7 +164,7 @@
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
-                        hx-get="{% url 'blog:logout' %}"
+                        hx-get="{% url 'blog:logout' %}""
                     >
                         Logout
                     </p>
