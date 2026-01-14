@@ -44,6 +44,10 @@ def category(request, category_hash):
     return posts(request, category=category)
 
 def post(request, post_hash):
+    if post_hash == 'latest':
+        post = BlogPost.objects.filter(is_published=True).order_by('-created_at').first()
+        return redirect('blog:post', post_hash=post.hash_field)
+    
     post = BlogPost.objects.get(hash_field=post_hash)
     if post:
         if request.session.session_key not in post.stats.visited['sessions']:
@@ -62,12 +66,7 @@ def post_footer(request, post_hash):
 
 def update_navbar(request):
     categories = Category.objects.filter(blogpost__is_published=True).distinct()
-    latest_post = BlogPost.objects.filter(is_published=True)
-    if latest_post:
-        latest_post = latest_post.latest('created_at').hash_field
-    else:
-        latest_post = None
-    return render(request, 'blog/components/navbar.html', {'categories': categories, 'latest':latest_post})
+    return render(request, 'blog/components/navbar.html', {'categories': categories})
 
 
 def like_post(request, post_hash, like_type):

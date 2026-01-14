@@ -36,19 +36,17 @@
                 <li>
                     <h2>Posts</h2>
                 </li>
-                {% if latest %}
                 <li>
                     <p
                         class="navbar-htmx-link"
                         data-text="Latest"
-                        hx-get="{% url 'blog:post' latest %}"
+                        hx-get="{% url 'blog:post' 'latest' %}"
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
                     >
                         Latest
                     </p>
-                {% endif %}
                     <p
                         class="navbar-htmx-link"
                         data-text="All posts"
