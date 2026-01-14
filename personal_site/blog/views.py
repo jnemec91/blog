@@ -101,8 +101,8 @@ def login(request):
         user = form.login(request)
         if user:
             HistoryLog.objects.create(source=f'{user.pk}:{user}', action='Login')
-            print(request.POST)
-            if 'next' in request.POST:
+
+            if 'next' in request.POST and request.POST['next']:
                 return redirect(request.POST['next'])
             
             return redirect('blog:home')

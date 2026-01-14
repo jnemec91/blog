@@ -39,16 +39,10 @@
         <script src="https://kit.fontawesome.com/178cd86837.js" crossorigin="anonymous"></script>
 
     </head>
-    <body
-        hx-get="{% url 'blog:update_navbar' %}"
-        hx-trigger="load"
-        hx-swap="outerHTML"
-        hx-target="#navbar-container"
-    >
-        <div id="navbar-container">
+    <body onload="navbarUpdate({'target':{'id':'body'}});">
 
-        </div>
-        {% block content %}{% endblock %}
+        {% block content %}
 
+        {% endblock %}
     </body>
 </html>
