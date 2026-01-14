@@ -32,6 +32,16 @@
                     >
                         About me
                     </p>
+                                        <p
+                        class="navbar-htmx-link"
+                        data-text="About me"
+                        hx-get="{% url 'blog:samba' %}"
+                        hx-trigger="click"
+                        hx-swap="outerHTML"
+                        hx-target="#page_content"
+                    >
+                        About Samba
+                    </p>
                 </li>
                 <li>
                     <h2>Posts</h2>

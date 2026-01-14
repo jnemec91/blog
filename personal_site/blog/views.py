@@ -18,6 +18,9 @@ def home(request):
 def about(request):
     return render(request, 'blog/about.html')
 
+def samba(request):
+    return render(request, 'blog/samba.html')
+
 def posts(request, search_phrase=None, category=None):
     if category:
         content = BlogPost.objects.filter(category=category).filter(is_published=True).order_by('-created_at')
