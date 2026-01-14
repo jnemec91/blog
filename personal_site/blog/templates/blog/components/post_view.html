@@ -4,6 +4,7 @@
         <div class="top-bar">
             <div class="title-bar">
                 <h1>{{ post.title }}</h1>
+                <p>{% if post.subtitle %}{{ post.subtitle }}{% endif %}</p>
             </div>
         </div>
         {% if post.image %}

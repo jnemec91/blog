@@ -5,7 +5,7 @@ from blog.models import BlogPost, Category, BlogUser
 class BlogPostForm(forms.ModelForm):
     class Meta:
         model = BlogPost
-        fields = ['title', 'image', 'content', 'category', 'is_published']
+        fields = ['title', 'subtitle', 'image', 'content', 'category', 'is_published']
 
     def save(self):
         if self.instance.pk is None:

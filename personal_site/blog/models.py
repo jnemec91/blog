@@ -79,6 +79,7 @@ class Category(models.Model):
 
 class BlogPost(models.Model):
     title = models.CharField(_("title"), max_length=100)
+    subtitle = models.CharField(_("subtitle"), max_length=200, blank=True)
     content = models.TextField(_("content"))
     author = models.ForeignKey(BlogUser, on_delete=models.CASCADE)
     created_at = models.DateTimeField(_("created at"), auto_now_add=True)

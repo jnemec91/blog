@@ -26,6 +26,8 @@
                             {% csrf_token %}
                             {{form.title.label_tag}}
                             {{ form.title }}
+                            {{ form.subtitle.label_tag }}
+                            {{ form.subtitle }}                            
                             {{ form.image.label_tag }}
                             {{ form.image }}
                             <div style="position: relative;">
