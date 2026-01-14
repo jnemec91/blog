@@ -85,6 +85,16 @@
                         </p>
                     {% endfor %}
                 </li>
+                <li>
+                    <h2>Localisation</h2>
+                    <p class="navbar-htmx-link">
+                        <select name="language" id="language">
+                            <option value="cs">Czech</option>
+                            <option value="en" selected>English</option>
+                        </select>                        
+                    </p>
+
+                </li>                
                 {% if user.is_authenticated %}
                 <li id="edit-nav">
                     <h2>Tools</h2>

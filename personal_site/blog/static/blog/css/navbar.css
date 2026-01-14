@@ -133,7 +133,29 @@ p .navbar-htmx-link::after {
     content: '';
     display: block;
     width: 100%;
-    height: 25%;
+    height: 60%;
+}
+
+#language{
+    display: inline-block;
+    background: transparent;
+    color: var(--foreground-color);
+    border: none;
+    font-family: 'Fixedsys Excelsior 3.01';
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#language option{
+    background-color: var(--background-color-2);
+    color: var(--foreground-color);
+}
+
+#language option:hover{
+box-shadow: 100px 100px 100px 100px var(--background-hover) inset!important;
 }
 
 @keyframes glitch {
