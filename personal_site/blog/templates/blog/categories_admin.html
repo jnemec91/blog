@@ -2,49 +2,51 @@
 {% load static i18n %}
 
 {% block content %}
-    <div class="page_content" id="page_content">
-        <!-- This is line for testing purposes. TEMPLATE: categories_admin.html -->
-        <div id="page-text">
-            <div class="post-detail">
-                <div class="top-bar">
-                    <div class="title-bar">
-                        <h1>Categories Administration</h1>
-                    </div>
+<div id="page_content">
+    {% include 'blog/components/navbar.html' %}
+
+    <!-- This is line for testing purposes. TEMPLATE: categories_admin.html -->
+    <div id="page-text">
+        <div class="post-detail">
+            <div class="top-bar">
+                <div class="title-bar">
+                    <h1>Categories Administration</h1>
                 </div>
-                <div class="page-wrapper">
-                    <div class="post-admin-list long" id="categories">
-                        <table
-                            hx-get="{% url 'blog:get_categories_table_part' %}"
-                            hx-swap="beforeend"
-                            hx-trigger="load"
-                            hx-target="#post-table-body"
+            </div>
+            <div class="page-wrapper">
+                <div class="post-admin-list long" id="categories">
+                    <table
+                        hx-get="{% url 'blog:get_categories_table_part' %}"
+                        hx-swap="beforeend"
+                        hx-trigger="load"
+                        hx-target="#post-table-body"
+                    >
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Created</th>
+                                <th>Last updated</th>
+                                <th>
+                                    <a
+                                    hx-get="{% url 'blog:category_edit' %}"
+                                    hx-target="#page_content"
+                                    hx-swap="outerHTML"
+                                    >
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody
+                            id="post-table-body"
                         >
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Created</th>
-                                    <th>Last updated</th>
-                                    <th>
-                                        <a
-                                        hx-get="{% url 'blog:category_edit' %}"
-                                        hx-target="#page_content"
-                                        hx-swap="outerHTML"
-                                        >
-                                            <i class="fas fa-plus"></i>
-                                        </a>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody
-                                id="post-table-body"
-                            >
-                                
-                            </tbody>
-                        </table>
-                    </div>
+                            
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

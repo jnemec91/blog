@@ -2,7 +2,9 @@
 {% load static i18n %}
 
 {% block content %}
-<div id="page_content" class="page_content">
+<div id="page_content">
+    {% include 'blog/components/navbar.html' %}
+
     <!-- This is line for testing purposes. TEMPLATE: login.html -->
     <div id="page-text">
         <div class="post-detail">
@@ -14,7 +16,7 @@
             <form
                 id="login_form"
                 hx-post="{% url 'blog:login' %}"
-                hx-swap="outerHTML"
+                hx-swap="innerHTML"
                 hx-target="#page_content"
                 hx-vals='{"next": "{{ request.GET.next }}"}'
                 >
@@ -29,6 +31,6 @@
             </form>
         </div>
     </div>
-</div>    
+</div>
 
 {% endblock %}

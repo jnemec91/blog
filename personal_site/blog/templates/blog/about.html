@@ -2,108 +2,105 @@
 {% load static i18n %}
 
 {% block content %}
-    <div class="page_content" id="page_content">
-        <!-- This is line for testing purposes. TEMPLATE: about.html -->
 
-        <div id="page-text">
-            <div class="post-detail">
-                <div class="top-bar">
-                    <div class="title-bar">
-                        <h1>{% blocktranslate %}About me{% endblocktranslate %}</h1>
-                    </div>
+<div id="page_content">
+    <!-- This is line for testing purposes. TEMPLATE: about.html -->    
+    {% include 'blog/components/navbar.html' %}
+    <div id="page-text">
+        <div class="post-detail">
+            <div class="top-bar">
+                <div class="title-bar">
+                    <h1>{% blocktranslate %}About me{% endblocktranslate %}</h1>
                 </div>
-                <div class="page-wrapper">
-                    <canvas id="background-canvas" style="position: absolute; top:0; left:0; z-index: -3;">
-                        Your browser does not support the HTML5 canvas tag.
-                    </canvas>
-                    <div class="profile-image">
-                        <img src="{% static 'blog/images/profile.png' %}" alt="Profile image">
-                    </div>
-                    <div class="profile-description" id="profile-description">
-                        <h2>Hello</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique blanditiis enim pariatur, exercitationem non eius earum velit consectetur, tempora cupiditate, incidunt eum ea accusantium? Perferendis suscipit quisquam eum! Dignissimos.
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, in? Repudiandae assumenda, eum modi fugiat beatae eos ex sed fugit consequatur, cum sit, ad tempore mollitia molestiae ipsam quam rerum?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam perspiciatis, corrupti sapiente nobis nihil excepturi laborum harum quo, sint quasi quibusdam veritatis earum debitis nulla aliquid! Esse distinctio consectetur laborum.
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus accusamus aut, tenetur dolorem beatae excepturi necessitatibus culpa ipsum ipsam eaque laborum cupiditate accusantium nihil voluptate voluptatibus placeat! Esse, modi doloribus?
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus doloribus nobis asperiores consequatur porro voluptas rem hic dignissimos, facilis quaerat facere corporis nostrum cupiditate architecto modi! Illo, alias! Placeat, possimus?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum molestias consequuntur doloribus rerum eius excepturi necessitatibus, culpa quasi deleniti repudiandae! Illum reprehenderit est nulla laboriosam tempore, expedita itaque accusantium quibusdam?
-                        </p>
-                    </div>
-                    <script type="text/javascript">
-                        var profileDescription = document.getElementById('profile-description');
-                        var certificates = document.getElementById('certificates');
-                        var events = document.getElementById('events');
-                        typingEffect(events);
-                        typingEffect(certificates);
-                        typingEffect(profileDescription);
-
-                    </script>        
-                </div>
-                <div class="page-wrapper">
-                    <div class="ceritifications" id="certificates">
-                        <h2>Completed courses:</h2>
-                        <ul class="certificates">
-                            <li>
-                                <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
-                                <a href="https://www.udemy.com/certificate/UC-66fce0e3-74ed-4fc6-9706-f131d9574c6b/" target="_blank">The Complete HTMX Course: Zero to Pro with HTMX</a>
-                            </li>  
-                            <li>
-                                <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
-                                <a href="https://www.udemy.com/certificate/UC-81872ec0-b146-46e7-8e5d-995e62450006/" target="_blank">The Git and Github Bootcamp</a>
-                            </li>                              
-                            <li>
-                                <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
-                                <a href="https://www.udemy.com/certificate/UC-9c0b6190-f204-4e79-8d91-82edf929c161/" target="_blank">The Complete Python Bootcamp From Zero to Hero in Python</a>
-                            </li>
-                            <li>
-                                <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
-                                <a href="https://www.udemy.com/certificate/UC-208dd5bd-3063-4211-8d76-591665878102/" target="_blank">Distributed Tasks Demystified with Celery, SQS & Python</a>
-                            </li>
-                            <li>
-                                <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
-                                <a href="https://www.udemy.com/certificate/UC-8f2c0a8c-6ca1-4ef1-a52d-c1c0a4e9a69b/" target="_blank">The Complete SQL Bootcamp: Go from Zero to Hero</a>
-                            </li>
-                            <li>
-                                <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
-                                <a href="https://www.udemy.com/certificate/UC-c5051e65-86da-43aa-af72-b34478ab493d/" target="_blank">Python and Django Full Stack Web Developer Bootcamp</a>
-                            </li>
-                            <li>
-                                <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
-                                <a href="https://www.udemy.com/certificate/UC-208dd5bd-3063-4211-8d76-591665878102/" target="_blank">PyScript - Running Python in the Browser</a>
-                            </li>
-                            <li>
-                                <i class="fab fa-free-code-camp"> </i>
-                                <a id="icon-text" href="https://www.freecodecamp.org/certification/fccf361fdd3-fbd5-44a4-af7b-7dfb002e0e57/responsive-web-design" target="_blank">Responsive Webdesign on freeCodeCamp.com</a>
-                            </li>                                
-                            <li>
-                                <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
-                                <a href="https://www.udemy.com/certificate/UC-WKEBYOHA/" target="_blank">Windows Server 2012 System Administration: Get an IT Job!</a>
-                            </li>                                
-                                                        
-                        </ul>
-                    </div>
-                    <div class="ceritifications" id="events">
-                        <h2 id="events-heading">Events participated:</h2>
-                        <ul class="certificates">
-                            <li>
-                                <img src="{% static 'blog/images/adventofcodelogo.png' %}" alt="logo">
-                                <a href="https://adventofcode.com/2022" target="_blank">Advent of code 2022</a>
-                            </li>
-                            <li>
-                                <img src="{% static 'blog/images/europythonlogo.png' %}" alt="logo">
-                                <a href="https://ep2023.europython.eu" target="_blank">Europython 2023</a>
-                            </li>
-                            <li>
-                                <img src="{% static 'blog/images/adventofcodelogo.png' %}" alt="logo">
-                                <a href="https://adventofcode.com/2023" target="_blank">Advent of code 2023</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>                
             </div>
+            <div class="page-wrapper">
+                <canvas id="background-canvas" style="position: absolute; top:0; left:0; z-index: -3;">
+                    Your browser does not support the HTML5 canvas tag.
+                </canvas>
+                <div class="profile-image">
+                    <img src="{% static 'blog/images/profile.png' %}" alt="Profile image">
+                </div>
+                <div class="profile-description" id="profile-description">
+                    <h2>Hello</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique blanditiis enim pariatur, exercitationem non eius earum velit consectetur, tempora cupiditate, incidunt eum ea accusantium? Perferendis suscipit quisquam eum! Dignissimos.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, in? Repudiandae assumenda, eum modi fugiat beatae eos ex sed fugit consequatur, cum sit, ad tempore mollitia molestiae ipsam quam rerum?
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam perspiciatis, corrupti sapiente nobis nihil excepturi laborum harum quo, sint quasi quibusdam veritatis earum debitis nulla aliquid! Esse distinctio consectetur laborum.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus accusamus aut, tenetur dolorem beatae excepturi necessitatibus culpa ipsum ipsam eaque laborum cupiditate accusantium nihil voluptate voluptatibus placeat! Esse, modi doloribus?
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus doloribus nobis asperiores consequatur porro voluptas rem hic dignissimos, facilis quaerat facere corporis nostrum cupiditate architecto modi! Illo, alias! Placeat, possimus?
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum molestias consequuntur doloribus rerum eius excepturi necessitatibus, culpa quasi deleniti repudiandae! Illum reprehenderit est nulla laboriosam tempore, expedita itaque accusantium quibusdam?
+                    </p>
+                </div>
+                <script type="text/javascript">
+                    var profileDescription = document.getElementById('profile-description');
+                    typingEffect(profileDescription);
+
+                </script>        
+            </div>
+            <div class="page-wrapper">
+                <div class="ceritifications" id="certificates">
+                    <h2>Completed courses:</h2>
+                    <ul class="certificates">
+                        <li>
+                            <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
+                            <a href="https://www.udemy.com/certificate/UC-66fce0e3-74ed-4fc6-9706-f131d9574c6b/" target="_blank">The Complete HTMX Course: Zero to Pro with HTMX</a>
+                        </li>  
+                        <li>
+                            <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
+                            <a href="https://www.udemy.com/certificate/UC-81872ec0-b146-46e7-8e5d-995e62450006/" target="_blank">The Git and Github Bootcamp</a>
+                        </li>                              
+                        <li>
+                            <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
+                            <a href="https://www.udemy.com/certificate/UC-9c0b6190-f204-4e79-8d91-82edf929c161/" target="_blank">The Complete Python Bootcamp From Zero to Hero in Python</a>
+                        </li>
+                        <li>
+                            <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
+                            <a href="https://www.udemy.com/certificate/UC-208dd5bd-3063-4211-8d76-591665878102/" target="_blank">Distributed Tasks Demystified with Celery, SQS & Python</a>
+                        </li>
+                        <li>
+                            <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
+                            <a href="https://www.udemy.com/certificate/UC-8f2c0a8c-6ca1-4ef1-a52d-c1c0a4e9a69b/" target="_blank">The Complete SQL Bootcamp: Go from Zero to Hero</a>
+                        </li>
+                        <li>
+                            <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
+                            <a href="https://www.udemy.com/certificate/UC-c5051e65-86da-43aa-af72-b34478ab493d/" target="_blank">Python and Django Full Stack Web Developer Bootcamp</a>
+                        </li>
+                        <li>
+                            <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
+                            <a href="https://www.udemy.com/certificate/UC-208dd5bd-3063-4211-8d76-591665878102/" target="_blank">PyScript - Running Python in the Browser</a>
+                        </li>
+                        <li>
+                            <i class="fab fa-free-code-camp"> </i>
+                            <a id="icon-text" href="https://www.freecodecamp.org/certification/fccf361fdd3-fbd5-44a4-af7b-7dfb002e0e57/responsive-web-design" target="_blank">Responsive Webdesign on freeCodeCamp.com</a>
+                        </li>                                
+                        <li>
+                            <img src="https://play-lh.googleusercontent.com/wKwW77zj6Gd-llTDakdjSDnWUPKSMDGXhnZSXel3A3qQSiM1cbDvuspBpQk15tiT9ik" alt="udemy logo">
+                            <a href="https://www.udemy.com/certificate/UC-WKEBYOHA/" target="_blank">Windows Server 2012 System Administration: Get an IT Job!</a>
+                        </li>                                
+                                                    
+                    </ul>
+                </div>
+                <div class="ceritifications" id="events">
+                    <h2 id="events-heading">Events participated:</h2>
+                    <ul class="certificates">
+                        <li>
+                            <img src="{% static 'blog/images/adventofcodelogo.png' %}" alt="logo">
+                            <a href="https://adventofcode.com/2022" target="_blank">Advent of code 2022</a>
+                        </li>
+                        <li>
+                            <img src="{% static 'blog/images/europythonlogo.png' %}" alt="logo">
+                            <a href="https://ep2023.europython.eu" target="_blank">Europython 2023</a>
+                        </li>
+                        <li>
+                            <img src="{% static 'blog/images/adventofcodelogo.png' %}" alt="logo">
+                            <a href="https://adventofcode.com/2023" target="_blank">Advent of code 2023</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>                
         </div>
     </div>
+</div>
 {% endblock %}

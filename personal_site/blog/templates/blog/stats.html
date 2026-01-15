@@ -2,88 +2,91 @@
 {% load static i18n %}
 
 {% block content %}
-    <div class="page_content" id="page_content">
-        <!-- This is line for testing purposes. TEMPLATE: stats.html -->
-        <div id="page-text">
-            <div class="post-detail">
-                <div class="top-bar">
-                    <div class="title-bar">
-                        <h1>App stats</h1>
-                    </div>
+<div id="page_content">
+    {% include 'blog/components/navbar.html' %}
+
+    <!-- This is line for testing purposes. TEMPLATE: stats.html -->
+    <div id="page-text">
+        <div class="post-detail">
+            <div class="top-bar">
+                <div class="title-bar">
+                    <h1>App stats</h1>
                 </div>
-                <div class="page-wrapper column">
-                    <ul class="certificates stats">
+            </div>
+            <div class="page-wrapper column">
+                <ul class="certificates stats">
+                    <li>
+                        <h2>App stats:</h2>
+                        <ul>
+                            <li>
+                                <p>Number of users: {{ users }}</p>
+                            </li>
+                            <li>
+                                <p>Number of posts: {{ posts }}</p>
+                            </li>
+                            <li>
+                                <p>Number of categories: {{ category_count }}</p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="certificates stats">
+                    <h2>Most viewed posts</h2>
+                    <ul>
+                        {% for post in top_posts %}
                         <li>
-                            <h2>App stats:</h2>
-                            <ul>
-                                <li>
-                                    <p>Number of users: {{ users }}</p>
-                                </li>
-                                <li>
-                                    <p>Number of posts: {{ posts }}</p>
-                                </li>
-                                <li>
-                                    <p>Number of categories: {{ categories }}</p>
-                                </li>
-                            </ul>
+                            <p
+                                hx-get="{% url 'blog:post' post.hash_field %}"
+                                hx-trigger="click"
+                                hx-swap="outerHTML"
+                                hx-target="#page_content"
+                                class="post-link"
+                            >
+                            {{ post.title }}: {{ post.stats.views }} views
+                            </p>
                         </li>
+                        {% endfor %}
                     </ul>
-                    <ul class="certificates stats">
-                        <h2>Most viewed posts</h2>
-                        <ul>
-                            {% for post in top_posts %}
-                            <li>
-                                <p
-                                    hx-get="{% url 'blog:post' post.hash_field %}"
-                                    hx-trigger="click"
-                                    hx-swap="outerHTML"
-                                    hx-target="#page_content"
-                                    class="post-link"
-                                >
-                                {{ post.title }}: {{ post.stats.views }} views
-                                </p>
-                            </li>
-                            {% endfor %}
-                        </ul>
+                </ul>
+                <ul class="certificates stats">
+                    <h2>Most liked posts</h2>
+                    <ul>
+                        {% for post in most_liked %}
+                        <li>
+                            <p
+                                hx-get="{% url 'blog:post' post.hash_field %}"
+                                hx-trigger="click"
+                                hx-swap="outerHTML"
+                                hx-target="#page_content"
+                                class="post-link"
+                            >
+                                {{ post.title }}: {{ post.stats.likes }} likes
+                            </p>
+                        </li>
+                        {% endfor %}
                     </ul>
-                    <ul class="certificates stats">
-                        <h2>Most liked posts</h2>
-                        <ul>
-                            {% for post in most_liked %}
-                            <li>
-                                <p
-                                    hx-get="{% url 'blog:post' post.hash_field %}"
-                                    hx-trigger="click"
-                                    hx-swap="outerHTML"
-                                    hx-target="#page_content"
-                                    class="post-link"
-                                >
-                                    {{ post.title }}: {{ post.stats.likes }} likes
-                                </p>
-                            </li>
-                            {% endfor %}
-                        </ul>
+                </ul>
+                <ul class="certificates stats">
+                    <h2>Most disliked posts</h2>
+                    <ul>
+                        {% for post in most_disliked %}
+                        <li>
+                            <p
+                                hx-get="{% url 'blog:post' post.hash_field %}"
+                                hx-trigger="click"
+                                hx-swap="outerHTML"
+                                hx-target="#page_content"
+                                class="post-link"
+                            >
+                                {{ post.title }}: {{ post.stats.dislikes }} dislikes
+                            </p>
+                        </li>
+                        {% endfor %}
                     </ul>
-                    <ul class="certificates stats">
-                        <h2>Most disliked posts</h2>
-                        <ul>
-                            {% for post in most_disliked %}
-                            <li>
-                                <p
-                                    hx-get="{% url 'blog:post' post.hash_field %}"
-                                    hx-trigger="click"
-                                    hx-swap="outerHTML"
-                                    hx-target="#page_content"
-                                    class="post-link"
-                                >
-                                    {{ post.title }}: {{ post.stats.dislikes }} dislikes
-                                </p>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </ul>                                 
-                </div>
+                </ul>                                 
             </div>
         </div>
     </div>
+</div>
+
 {% endblock %}

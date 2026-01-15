@@ -1,9 +1,13 @@
 {% extends 'blog/index.html' %}
 
 {% block content %}
-    <div class="page_content" id="page_content">
-        <canvas id="animation">
 
-        </canvas>
-    </div>
+<div id="page_content">
+
+    <!-- This is line for testing purposes. TEMPLATE: home.html -->    
+    {% include 'blog/components/navbar.html' %}    
+    <canvas id="animation">
+
+    </canvas>
+</div>
 {% endblock %}

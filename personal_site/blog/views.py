@@ -209,7 +209,7 @@ def stats(request):
     # get number of users, posts, categories, and logs
     users = BlogUser.objects.all().count()
     posts = BlogPost.objects.all().count()
-    categories = Category.objects.all().count()
+    category_count = Category.objects.all().count()
 
     # get stats for top 10 posts
     top_posts = BlogPost.objects.all().order_by('-stats__views')[:10]
@@ -217,6 +217,6 @@ def stats(request):
     most_disliked = BlogPost.objects.all().order_by('-stats__dislikes')[:10]    
 
     return render(request, 'blog/stats.html',
-        {'users': users, 'posts': posts, 'categories': categories,
+        {'users': users, 'posts': posts, 'category_count': category_count,
             'top_posts': top_posts, 'most_liked': most_liked, 'most_disliked': most_disliked}
                   )

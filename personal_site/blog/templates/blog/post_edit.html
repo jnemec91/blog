@@ -2,74 +2,75 @@
 {% load static i18n %}
 
 {% block content %}
-    <div class="page_content" id="page_content">
-        <!-- This is line for testing purposes. TEMPLATE: post_edit.html -->
-        <div id="page-text">
-            <div class="post-detail">
-                <div class="top-bar">
-                    <div class="title-bar">
-                        <h1>{% if post %}Edit{% else %}Create{% endif %} post</h1>
-                    </div>
+<div id="page_content">
+    {% include 'blog/components/navbar.html' %}
+
+    <!-- This is line for testing purposes. TEMPLATE: post_edit.html -->
+    <div id="page-text">
+        <div class="post-detail">
+            <div class="top-bar">
+                <div class="title-bar">
+                    <h1>{% if post %}Edit{% else %}Create{% endif %} post</h1>
                 </div>
-                <div class="page-wrapper">
-                    <div class="post-admin-list" id="post-admin">
-                        <form
-                            enctype='multipart/form-data'
-                            hx-encoding='multipart/form-data'
-                            {% if post %}
-                            hx-post="{% url 'blog:post_edit' post.hash_field %}"
-                            {% else %}
-                            hx-post="{% url 'blog:post_edit' %}"
-                            {% endif %}
+            </div>
+            <div class="page-wrapper">
+                <div class="post-admin-list" id="post-admin">
+                    <form
+                        enctype='multipart/form-data'
+                        hx-encoding='multipart/form-data'
+                        {% if post %}
+                        hx-post="{% url 'blog:post_edit' post.hash_field %}"
+                        {% else %}
+                        hx-post="{% url 'blog:post_edit' %}"
+                        {% endif %}
+                        hx-target="#page_content"
+                        hx-swap="innerHTML"
+                    >
+                        {% csrf_token %}
+                        {{form.title.label_tag}}
+                        {{ form.title }}
+                        {{ form.subtitle.label_tag }}
+                        {{ form.subtitle }}                            
+                        {{ form.image.label_tag }}
+                        {{ form.image }}
+                        <div style="position: relative;">
+                            {{ form.content.label_tag }}
+                            {{ form.content }}
+                            <button type="button" class="maximize-button maximize-button-minimized" id="maximize-button">Maximize</button>
+                        </div>
+                        {{ form.category.label_tag }}
+                        {{ form.category }}
+                        <br>
+                        {{ form.is_published.label_tag }}
+                        {{ form.is_published }}
+                        <div class="buttons">
+                            <button type="submit" class="search-button">Save</button>
+                            <button
+                            type="button"
+                            class="search-button"
+                            hx-get="{% url 'blog:posts_admin' %}"
                             hx-target="#page_content"
-                            hx-swap="outerHTML"
-                        >
-                            {% csrf_token %}
-                            {{form.title.label_tag}}
-                            {{ form.title }}
-                            {{ form.subtitle.label_tag }}
-                            {{ form.subtitle }}                            
-                            {{ form.image.label_tag }}
-                            {{ form.image }}
-                            <div style="position: relative;">
-                                {{ form.content.label_tag }}
-                                {{ form.content }}
-                                <button type="button" class="maximize-button maximize-button-minimized" id="maximize-button">Maximize</button>
-                            </div>
-                            {{ form.category.label_tag }}
-                            {{ form.category }}
-                            <br>
-                            {{ form.is_published.label_tag }}
-                            {{ form.is_published }}
-                            <div class="buttons">
-                                <button type="submit" class="search-button">Save</button>
-                                <button
+                            >
+                            Back
+                            </button>
+                            {% if post %}
+                            <button
                                 type="button"
-                                class="search-button"
-                                hx-get="{% url 'blog:posts_admin' %}"
+                                class="search-button delete-button"
+                                hx-delete="{% url 'blog:post_delete' post.hash_field %}"
+                                hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
                                 hx-target="#page_content"
-                                >
-                                Back
-                                </button>
-                                {% if post %}
-                                <button
-                                    type="button"
-                                    class="search-button delete-button"
-                                    hx-delete="{% url 'blog:post_delete' post.hash_field %}"
-                                    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-                                    hx-target="#page_content"
-                                    hx-swap="outerHTML"
-                                    hx-confirm="Are you sure you want to delete this post?"
-                                >
-                                Delete
-                                </button>
-                                {% endif %}                                
-                            </div>
-                        </form>
-                    </div>
-                    <div class="post-preview" id="post-preview">
-                        <h1 class="preview-heading">Preview</h1>
-                    </div>
+                                hx-swap="innerHTML"
+                                hx-confirm="Are you sure you want to delete this post?"
+                            >
+                            Delete
+                            </button>
+                            {% endif %}                                
+                        </div>
+                    </form>
+                </div>
+                <div class="post-preview" id="post-preview">
+                    <h1 class="preview-heading">Preview</h1>
                 </div>
             </div>
         </div>
@@ -106,4 +107,5 @@
         }
         
     </script>
+</div>
 {% endblock %}

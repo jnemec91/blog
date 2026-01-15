@@ -1,202 +1,201 @@
 {% load static %}
 
 {% block navbar %}
-    
-    <div id="navbar-wrap">
-        <!-- This is line for testing purposes. TEMPLATE: navbar.html -->
-        <button id="toggle-navbar" onclick="toggleNavbar();">
-            <i class="fa fa-bars"></i>
-        </button>
-        <div class="navbar-background collapsed" id="navbar-block">
-            <ul class="navbar">
-                <li>
-                    <h2
-                        class="navbar-htmx-link"
-                        data-text="Gloody's Glitchground"
-                        hx-get="{% url 'blog:home' %}"
-                        hx-trigger="click"
-                        hx-swap="outerHTML"
-                        hx-target="#page_content"
-                        hx-push-url="true"
-                        hx-boost="true"
-                        >
-                        Gloody's Glitchground
-                    </h2>
-                </li>
-                <li class="navbar-links-li">
+<div id="navbar-wrap">
+    <!-- This is line for testing purposes. TEMPLATE: navbar.html -->
+    <button id="toggle-navbar" onclick="toggleNavbar();">
+        <i class="fa fa-bars"></i>
+    </button>
+    <div class="navbar-background collapsed" id="navbar-block">
+        <ul class="navbar">
+            <li>
+                <h2
+                    class="navbar-htmx-link"
+                    data-text="Gloody's Glitchground"
+                    hx-get="{% url 'blog:home' %}"
+                    hx-trigger="click"
+                    hx-swap="outerHTML"
+                    hx-target="#page_content"
+                    hx-push-url="true"
+                    hx-boost="true"
+                    >
+                    Gloody's Glitchground
+                </h2>
+            </li>
+            <li class="navbar-links-li">
+                <p
+                    class="navbar-htmx-link"
+                    data-text="About me"
+                    hx-get="{% url 'blog:about' %}"
+                    hx-trigger="click"
+                    hx-swap="outerHTML"
+                    hx-target="#page_content"
+                    hx-push-url="true"
+                    hx-boost="true"
+                >
+                    About me
+                </p>
+                                    <p
+                    class="navbar-htmx-link"
+                    data-text="About me"
+                    hx-get="{% url 'blog:samba' %}"
+                    hx-trigger="click"
+                    hx-swap="outerHTML"
+                    hx-target="#page_content"
+                    hx-push-url="true"
+                    hx-boost="true"
+                >
+                    About Samba
+                </p>
+            </li>
+            <li>
+                <h2>Posts</h2>
+            </li>
+            <li>
+                <p
+                    class="navbar-htmx-link"
+                    data-text="Latest"
+                    hx-get="{% url 'blog:post' 'latest' %}"
+                    hx-trigger="click"
+                    hx-swap="outerHTML"
+                    hx-target="#page_content"
+                    hx-push-url="true"
+                    hx-boost="true"
+                >
+                    Latest
+                </p>
+                <p
+                    class="navbar-htmx-link"
+                    data-text="All posts"
+                    hx-get="{% url 'blog:posts' %}"
+                    hx-trigger="click"
+                    hx-swap="outerHTML"
+                    hx-target="#page_content"
+                    hx-push-url="true"
+                    hx-boost="true"
+                >
+                    All posts
+                </p>
+            </li>
+            <li>
+                <h2>Categories</h2>
+            </li>
+            <li class="category-list">
+                {% for blog_category in categories %}
                     <p
                         class="navbar-htmx-link"
-                        data-text="About me"
-                        hx-get="{% url 'blog:about' %}"
+                        data-text="{{ blog_category.name }}"
+                        hx-get="{% url 'blog:category' blog_category.hash_field %}"
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#page_content"
                         hx-push-url="true"
                         hx-boost="true"
                     >
-                        About me
+                        {{ blog_category.name }}
                     </p>
-                                        <p
-                        class="navbar-htmx-link"
-                        data-text="About me"
-                        hx-get="{% url 'blog:samba' %}"
-                        hx-trigger="click"
-                        hx-swap="outerHTML"
-                        hx-target="#page_content"
-                        hx-push-url="true"
-                        hx-boost="true"
-                    >
-                        About Samba
-                    </p>
-                </li>
-                <li>
-                    <h2>Posts</h2>
-                </li>
-                <li>
-                    <p
-                        class="navbar-htmx-link"
-                        data-text="Latest"
-                        hx-get="{% url 'blog:post' 'latest' %}"
-                        hx-trigger="click"
-                        hx-swap="outerHTML"
-                        hx-target="#page_content"
-                        hx-push-url="true"
-                        hx-boost="true"
-                    >
-                        Latest
-                    </p>
-                    <p
-                        class="navbar-htmx-link"
-                        data-text="All posts"
-                        hx-get="{% url 'blog:posts' %}"
-                        hx-trigger="click"
-                        hx-swap="outerHTML"
-                        hx-target="#page_content"
-                        hx-push-url="true"
-                        hx-boost="true"
-                    >
-                        All posts
-                    </p>
-                </li>
-                <li>
-                    <h2>Categories</h2>
-                </li>
-                <li class="category-list">
-                    {% for blog_category in categories %}
-                        <p
-                            class="navbar-htmx-link"
-                            data-text="{{ blog_category.name }}"
-                            hx-get="{% url 'blog:category' blog_category.hash_field %}"
-                            hx-trigger="click"
-                            hx-swap="outerHTML"
-                            hx-target="#page_content"
-                            hx-push-url="true"
-                            hx-boost="true"
-                        >
-                            {{ blog_category.name }}
-                        </p>
-                    {% endfor %}
-                </li>
-                <li>
-                    <h2>Localisation</h2>
-                    <p class="navbar-htmx-link">
-                        <select name="language" id="language">
-                            <option value="cs">Czech</option>
-                            <option value="en" selected>English</option>
-                        </select>                        
-                    </p>
+                {% endfor %}
+            </li>
+            <li>
+                <h2>Localisation</h2>
+                <p class="navbar-htmx-link">
+                    <select name="language" id="language">
+                        <option value="cs">Czech</option>
+                        <option value="en" selected>English</option>
+                    </select>                        
+                </p>
 
-                </li>                
-                {% if user.is_authenticated %}
-                <li id="edit-nav">
-                    <h2>Tools</h2>
-                    <p
-                        class="navbar-htmx-link"
-                        data-text="Posts"
-                        hx-trigger="click"
-                        hx-swap="outerHTML"
-                        hx-target="#page_content"
-                        hx-get="{% url 'blog:posts_admin' %}"
-                        hx-push-url="true"
-                        hx-boost="true"
+            </li>                
+            {% if user.is_authenticated %}
+            <li id="edit-nav">
+                <h2>Tools</h2>
+                <p
+                    class="navbar-htmx-link"
+                    data-text="Posts"
+                    hx-trigger="click"
+                    hx-swap="outerHTML"
+                    hx-target="#page_content"
+                    hx-get="{% url 'blog:posts_admin' %}"
+                    hx-push-url="true"
+                    hx-boost="true"
+                >
+                    Posts
+                </p>
+                <p
+                    class="navbar-htmx-link"
+                    data-text="Categories"
+                    hx-trigger="click"
+                    hx-swap="outerHTML"
+                    hx-target="#page_content"
+                    hx-get="{% url 'blog:categories_admin' %}"
+                    hx-push-url="true"
+                    hx-boost="true"
+                >
+                    Categories
+                </p>
+                <p
+                    class="navbar-htmx-link"
+                    data-text="Log"
+                    hx-trigger="click"
+                    hx-swap="outerHTML"
+                    hx-target="#page_content"
+                    hx-get="{% url 'blog:history_log' %}"
+                    hx-push-url="true"
+                    hx-boost="true"
+                >
+                    Log
+                </p>
+                <p 
+                    class="navbar-htmx-link"
+                    data-text="Stats"
+                    hx-trigger="click"
+                    hx-swap="outerHTML"
+                    hx-target="#page_content"
+                    hx-get="{% url 'blog:stats' %}"
+                    hx-push-url="true"
+                    hx-boost="true"
+                >
+                    Stats
+                </p>               
+                <p
+                    class="red navbar-htmx-link"
+                    data-text="Logout"
+                    hx-trigger="click"
+                    hx-swap="outerHTML"
+                    hx-target="#page_content"
+                    hx-get="{% url 'blog:logout' %}"
+                >
+                    Logout
+                </p>
+            </li>
+            {% else %}                               
+            <li id="edit-nav">
+                <h2>Tools</h2>                    
+                <p
+                    class="navbar-htmx-link"
+                    data-text="Login"
+                    hx-trigger="click"
+                    hx-swap="outerHTML"
+                    hx-target="#page_content"
+                    hx-get="{% url 'blog:login' %}"
+                >
+                Login
+                </p>
+            </li>
+            {% endif %}
+            <li id="search-nav">
+                <div id="search-input-box" class="search-box toggle-off">
+                    <button
+                        id="search-button"
+                        class="search-button"
+                        onclick="updateSearchUrl('/posts/')"
                     >
-                        Posts
-                    </p>
-                    <p
-                        class="navbar-htmx-link"
-                        data-text="Categories"
-                        hx-trigger="click"
-                        hx-swap="outerHTML"
-                        hx-target="#page_content"
-                        hx-get="{% url 'blog:categories_admin' %}"
-                        hx-push-url="true"
-                        hx-boost="true"
-                    >
-                        Categories
-                    </p>
-                    <p
-                        class="navbar-htmx-link"
-                        data-text="Log"
-                        hx-trigger="click"
-                        hx-swap="outerHTML"
-                        hx-target="#page_content"
-                        hx-get="{% url 'blog:history_log' %}"
-                        hx-push-url="true"
-                        hx-boost="true"
-                    >
-                        Log
-                    </p>
-                    <p 
-                        class="navbar-htmx-link"
-                        data-text="Stats"
-                        hx-trigger="click"
-                        hx-swap="outerHTML"
-                        hx-target="#page_content"
-                        hx-get="{% url 'blog:stats' %}"
-                        hx-push-url="true"
-                        hx-boost="true"
-                    >
-                        Stats
-                    </p>               
-                    <p
-                        class="red navbar-htmx-link"
-                        data-text="Logout"
-                        hx-trigger="click"
-                        hx-swap="outerHTML"
-                        hx-target="#page_content"
-                        hx-get="{% url 'blog:logout' %}""
-                    >
-                        Logout
-                    </p>
-                </li>
-                {% else %}                               
-                <li id="edit-nav">
-                    <h2>Tools</h2>                    
-                    <p
-                        class="navbar-htmx-link"
-                        data-text="Login"
-                        hx-trigger="click"
-                        hx-swap="outerHTML"
-                        hx-target="#page_content"
-                        hx-get="{% url 'blog:login' %}"
-                    >
-                    Login
-                    </p>
-                </li>
-                {% endif %}
-                <li id="search-nav">
-                    <div id="search-input-box" class="search-box toggle-off">
-                        <button
-                            id="search-button"
-                            class="search-button"
-                            onclick="updateSearchUrl('/posts/')"
-                        >
-                            Search
-                        </button>
-                        <input type="text" name="search" class="search-input" id="search-input">
-                    </div>
-                </li>
-            </ul>
-        </div>
+                        Search
+                    </button>
+                    <input type="text" name="search" class="search-input" id="search-input">
+                </div>
+            </li>
+        </ul>
     </div>
+</div>
 {% endblock %}
