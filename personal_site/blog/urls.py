@@ -14,6 +14,7 @@ urlpatterns = [
     path('posts/<str:search_phrase>/', views.posts, name='posts'),
     path('category/<str:category_hash>/', views.category, name='category'),
     path('post/<str:post_hash>/', views.post, name='post'),
+    path('preview/<str:post_hash>/', views.post_preview, name='post_preview'),
     
     # admin views
     path('posts_admin/', views.posts_admin, name='posts_admin'),

@@ -63,6 +63,16 @@ def post(request, post_hash):
 
     return render(request, 'blog/post_detail.html', {'post': post})
 
+def post_preview(request, post_hash):
+    post = BlogPost.objects.get(hash_field=post_hash)
+    if post:
+        if request.session.session_key not in post.stats.visited['sessions']:
+            post.stats.visited['sessions'].append(request.session.session_key)
+            post.stats.views += 1
+            post.stats.save()
+
+    return render(request, 'blog/components/post_view.html', {'post': post})
+
 def post_footer(request, post_hash):
     post = BlogPost.objects.get(hash_field=post_hash)
     voted = False

@@ -2,7 +2,7 @@
 <!-- This is line for testing purposes. TEMPLATE: post_table.html -->
 <tr
     class="post-row"
-    hx-get="{% url 'blog:post' post.hash_field %}"
+    hx-get="{% url 'blog:post_preview' post.hash_field %}"
     hx-target="#post-preview"
     hx-swap="innerHTML"
     hx-trigger="click"
