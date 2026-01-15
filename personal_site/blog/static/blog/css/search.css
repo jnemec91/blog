@@ -35,7 +35,6 @@
 .search-button:hover{
     box-shadow: 0 0 100px 100px var(--foreground-hover) inset;
     color: var(--background-color);
-    opacity: 1;
 }
 
 .search-box{
