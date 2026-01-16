@@ -1,0 +1,84 @@
+{% extends 'blog/index.html' %}
+{% load static i18n %}
+
+{% block content %}
+
+<div id="page_content" class="page_content">
+
+    <!-- This is line for testing purposes. TEMPLATE: home.html -->    
+    {% include 'blog/components/navbar.html' %}
+    <div id="page-text">
+        <div class="post-detail" style="padding: 0;">
+            <div class="">
+                <div class="title-bar">
+                    <h1>Gloody's Glitchground</h1>
+                    <div
+                        id="navigation"
+                        hx-get="{% url 'blog:life' %}"
+                        hx-swap="innerHTML"
+                        hx-target="#animation-wrapper"
+                        hx-trigger="load"
+                        hx-push-url="false"
+                        >
+                        <button
+                            class="search-button selected-button"
+                            hx-get="{% url 'blog:life' %}"
+                            hx-swap="innerHTML"
+                            hx-target="#animation-wrapper"
+                            hx-trigger="click"
+                            hx-push-url="false"
+                            >
+                            Conway's Game of Life
+                        </button>
+                        <button
+                            class="search-button"
+                            hx-get="{% url 'blog:snow' %}"
+                            hx-swap="innerHTML"
+                            hx-target="#animation-wrapper"
+                            hx-push-url="false"
+                            >
+                            Snowflake generator
+                        </button>
+                        <button
+                            class="search-button"
+                            hx-get="{% url 'blog:bees' %}"
+                            hx-swap="innerHTML"
+                            hx-target="#animation-wrapper"
+                            hx-push-url="false"
+                            >
+                            DOM Bees
+                        </button>                        
+                    </div>
+                </div>
+            </div>
+            <div id="animation-wrapper" class="animation-wrapper">
+            </div>
+        </div>
+    </div>    
+
+    <script>
+        function getNavigationButtons() {
+            let buttons = document.querySelectorAll('#navigation .search-button');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // remove selected-button class from all buttons
+                    buttons.forEach(btn => btn.classList.remove('selected-button'));
+                    // add selected-button class to clicked button
+                    button.classList.add('selected-button');
+                });
+            });
+        }
+
+        document.addEventListener('htmx:afterSwap', (event) => {
+            // check if the swap target is #animation-wrapper
+            if (event.detail.target.id === 'animation-wrapper') {
+                getNavigationButtons();
+            }
+        });
+
+    </script>
+    
+
+</div>
+{% endblock %}

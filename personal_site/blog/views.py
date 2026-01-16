@@ -12,8 +12,8 @@ from blog.forms.CategoryForm import CategoryForm
 def index(request):
     return render(request, 'blog/index.html', {'categories': Category.objects.filter(blogpost__is_published=True).distinct()})
 
-def home(request):
-    return render(request, 'blog/home.html')
+def playground(request):
+    return render(request, 'blog/playground.html')
 
 def about(request):
     return render(request, 'blog/about.html')
@@ -104,7 +104,7 @@ def like_post(request, post_hash, like_type):
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('blog:home')
+        return redirect('blog:about')
     
     form = LoginForm(request.POST or None)
     if form.is_valid(request):
@@ -115,7 +115,7 @@ def login(request):
             if 'next' in request.POST and request.POST['next']:
                 return redirect(request.POST['next'])
             
-            return redirect('blog:home')
+            return redirect('blog:about')
         
     return render(request, 'blog/login.html', {'form': form})
 
@@ -222,11 +222,20 @@ def stats(request):
     category_count = Category.objects.all().count()
 
     # get stats for top 10 posts
-    top_posts = BlogPost.objects.all().order_by('-stats__views')[:10]
-    most_liked = BlogPost.objects.all().order_by('-stats__likes')[:10]
-    most_disliked = BlogPost.objects.all().order_by('-stats__dislikes')[:10]    
+    top_posts = BlogPost.objects.all().order_by('-stats__views')[:5]
+    most_liked = BlogPost.objects.all().order_by('-stats__likes')[:5]
+    most_disliked = BlogPost.objects.all().order_by('-stats__dislikes')[:5]    
 
     return render(request, 'blog/stats.html',
         {'users': users, 'posts': posts, 'category_count': category_count,
             'top_posts': top_posts, 'most_liked': most_liked, 'most_disliked': most_disliked}
                   )
+
+def snow(request):
+    return render(request, 'snow/snow.html')
+
+def life(request):
+    return render(request, 'life/life.html')
+
+def bees(request):
+    return render(request, 'bees/bees.html')

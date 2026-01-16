@@ -1,0 +1,96 @@
+    {% load static %}
+    <div id="buttons">
+        <h4>Procedurální sněžení</h4>
+        <div id="new" class="button" onclick="toggleModal();">
+            <span>+</span> Nová vločka
+        </div>
+        <div style="margin: 0 auto 20px auto; width: fit-content;">
+            <label class="slider-label" for="randomSnowflakes">Generovat náhodné</label>
+            <input type="checkbox" id="randomSnowflakes">
+        </div>
+        <div>
+            <label class="slider-label" for="spawnCount">Vločky za vteřinu</label>
+            <input type="range" id="spawnCount" min="1" max="200" value="100">
+        </div>                
+        <div>
+            <label class="slider-label" for="gravity">Gravitace</label>
+            <input type="range" id="gravity" min="1" max="20" value="1" step="0.1">
+        </div>
+        <div>
+            <label class="slider-label" for="wind">Vítr</label>
+            <input type="range" id="wind" min="-50" max="50" value="0">
+        </div>
+        <div>
+            <label class="slider-label" for="rotationSpeed">Rychlost rotace</label>
+            <input type="range" id="rotationSpeed" min="-10" max="10" value="0" step="1">
+        </div>        
+        <div>
+            <label class="slider-label" for="wind">Maximální velikost</label>
+            <input type="range" id="snowflakeSize" min="1" max="30" value="10">
+        </div>
+        <div class="button" id="resetSnowflakes" style="margin-top: 15px;" onclick="resetSnowflakes()">
+            Resetovat
+        </div>
+    </div>
+    <div class="backdrop" onclick="toggleModal();"></div>
+    <div id="newSnowflakeModal" class="modal">
+        <canvas id="newSnowflakeCanvas"></canvas>
+        <div style="margin:40% 5% 0 5%; width: fit-content; width: 90%; display: flex;">
+            <div class="button" id="addShape" style="margin:0;">Přidat</div>
+            <div>
+                <label class="slider-label" for="spanning">Počet větví</label>
+                <input type="range" id="spanning" min="1" max="20" value="10">
+            </div>
+            <div>
+                <label class="slider-label" for="fuzzyness">Délka větví</label>
+                <input type="range" id="fuzzyness" min="1" max="10" value="3">
+            </div>            
+            <div>
+                <label class="slider-label" for="spanAngle">Úhel větví</label>
+                <input type="range" id="spanAngle" min="1" max="360" value="320">
+            </div>
+            <br>
+            <div>
+                <label class="slider-label" for="branches">Počet ramen</label>
+                <input type="range" id="branches" min="6" max="9" value="1">
+            </div>
+            <div>
+                <label class="slider-label" for="previewSize">Přiblížení</label>
+                <input type="range" id="previewSize" min="1" max="150" value="120">
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="art">
+        <div class="hill">
+            <div class="snowman">
+                <div class="cauldron"></div>
+                <div class="head-ball ball"></div>
+                <div class="medium-ball ball"></div>
+                <div class="big-ball ball"></div>
+                <div class="left hand"></div>
+                <div class="right hand"></div>
+            </div>
+            <div class="dog">
+                <div class="ear left-ear"></div>
+                <div class="ear right-ear"></div>
+                <div class="head"></div>
+                <div class="body">
+                    <div class="lighter-spot"></div>
+                </div>
+                <div class="dog-leg left-leg"></div>
+                <div class="dog-leg right-leg"></div>
+                <div class="back-leg left-leg"></div>
+                <div class="back-leg right-leg"></div>
+                <div class="tail"></div>
+            </div>
+        </div>
+        
+    </div>
+
+    <canvas id="snowCanvas" class="animation"></canvas>
+
+    <!-- Proceduralni generovani vlocek a snezeni. -->
+    <script src="{% static 'snow/js/snow-animation.js' %}"></script>
+

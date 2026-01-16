@@ -9,12 +9,17 @@ urlpatterns = [
     path('', views.about_redirect, name='about_redirect'),
     path('about/', views.about, name='about'),
     path('samba/', views.samba, name='samba'),    
-    path('home/', views.home, name='home'),
+    path('playground/', views.playground, name='playground'),
     path('posts/', views.posts, name='posts'),
     path('posts/<str:search_phrase>/', views.posts, name='posts'),
     path('category/<str:category_hash>/', views.category, name='category'),
     path('post/<str:post_hash>/', views.post, name='post'),
     path('preview/<str:post_hash>/', views.post_preview, name='post_preview'),
+
+    # playground view
+    path('playground/snow/', views.snow, name='snow'),
+    path('playground/life/', views.life, name='life'),
+    path('playground/bees/', views.bees, name='bees'),
     
     # admin views
     path('posts_admin/', views.posts_admin, name='posts_admin'),
