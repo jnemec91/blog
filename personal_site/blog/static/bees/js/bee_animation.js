@@ -1,3 +1,24 @@
+function archText(element, isTop = true) {
+    const text = element.textContent;
+    element.innerHTML = '';
+    const chars = text.split('');
+    const angleStep = 8;
+    const startAngle = -(chars.length - 1) * angleStep / 2;
+    const radius = 130;
+    
+    chars.forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        const angle = startAngle + (i * angleStep);
+        if (isTop) {
+            span.style.transform = `rotate(${angle}deg) translateY(-${radius}px)`;
+        } else {
+            span.style.transform = `rotate(${-angle}deg) translateY(${radius}px)`;
+        }
+        element.appendChild(span);
+    });
+}
+
 function initialize_bee_animation(){
     if (!window.beeState){
         window.beeState = {
@@ -8,12 +29,17 @@ function initialize_bee_animation(){
 
     if (window.beeState.hive){
         window.beeState.hive.addEventListener('click', function(){
-            if (window.beeState.maxbees < 5){
+            if (window.beeState.maxbees < 8){
                 create_bee();
                 window.beeState.maxbees = window.beeState.maxbees + 1;
             }
         });
     }
+
+    const topHeading = document.querySelector('.bee-heading-top');
+    const bottomHeading = document.querySelector('.bee-heading-down');
+    if (topHeading) archText(topHeading, true);
+    if (bottomHeading) archText(bottomHeading, false);
 
     // Clean up bees before an htmx request
     window.addEventListener('htmx:beforeRequest', function(){
@@ -31,7 +57,7 @@ function create_bee(){
     let par = document.getElementById('main')
     let hive = document.getElementById('hive')
 
-    let posx = (hive.offsetLeft/100)*-50 +  hive.offsetLeft + hive.offsetWidth/1.4;
+    let posx = (hive.offsetLeft/100)*-50 +  hive.offsetLeft + hive.offsetWidth/2;
     let posy = (hive.offsetTop/100)*-50 +  hive.offsetTop + hive.offsetHeight/2;
 
     const bee = document.createElement("div");

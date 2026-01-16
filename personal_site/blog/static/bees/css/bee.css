@@ -137,6 +137,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.5);
+    z-index: 30;
 }
 
 #hive:hover{
@@ -180,6 +181,48 @@
     text-align: center;
     overflow: hidden;
     background: radial-gradient(ellipse at center, #90EE90 0%, #6B8E23 50%, #2E5016 100%)
+}
+
+.bee-heading-top{
+    position: absolute;
+    top: 22%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: xx-large;
+    color: #4B5320;
+    text-shadow: 2px 2px 4px #aaa;
+    height: 120px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.bee-heading-top span {
+    position: absolute;
+    transform-origin: bottom center;
+    display: inline-block;
+}
+
+.bee-heading-down{
+    position: absolute;
+    bottom: 22%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: xx-large;
+    color: #4B5320;
+    text-shadow: 2px 2px 4px #aaa;
+    height: 120px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.bee-heading-down span {
+    position: absolute;
+    transform-origin: top center;
+    display: inline-block;
 }
 
 @media screen and (max-width: 800px){
