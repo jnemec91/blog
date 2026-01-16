@@ -57,6 +57,11 @@ i{
     color: var(--border-color);
     cursor: pointer;
 }
+@media screen and (min-width: 1220px){
+    .title-bar{
+        transform: translateX(-2px);
+    }
+}
 
 @media screen and (max-width: 1220px){
     body{
