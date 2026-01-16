@@ -323,9 +323,10 @@
     display: flex;
 }
 
-.buttons .delete-button{
+.buttons.delete-button{
     align-self: flex-end;
 }
+
 
 @media screen and (max-width: 1220px){
     .post-admin-list{
@@ -353,5 +354,9 @@
         min-width: 100%;
         max-width: 100%;
         transform: translateX(0);
+    }
+        
+    .buttons > button{
+        width: auto!important;
     }
 }
