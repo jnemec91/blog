@@ -32,11 +32,17 @@
             Resetovat
         </div>
     </div>
+
+    <button id="buttons-toggler" class="buttons-toggler button" onclick="toggleButtons()">&#10006</button>
+
     <div class="backdrop" onclick="toggleModal();"></div>
     <div id="newSnowflakeModal" class="modal">
         <canvas id="newSnowflakeCanvas"></canvas>
-        <div style="margin:40% 5% 0 5%; width: fit-content; width: 90%; display: flex;">
-            <div class="button" id="addShape" style="margin:0;">Přidat</div>
+        <div class="new-flake-controls">
+            <div>
+                <div class="button" id="addShape" style="margin:0;">Přidat</div>
+                <div class="button" onclick="toggleModal()" style="margin: 5px 0 0 0;">Zavřít</div>
+            </div>
             <div>
                 <label class="slider-label" for="spanning">Počet větví</label>
                 <input type="range" id="spanning" min="1" max="20" value="10">
