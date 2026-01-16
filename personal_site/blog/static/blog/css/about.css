@@ -79,6 +79,14 @@
         max-width: calc(100% - 2rem);
         width: calc(100% - 2rem);
     }
+
+}
+
+@media screen and (max-width: 372px){
+    .profile-image{
+        width: 250px;
+        height: 250px;
+    }
 }
 
 canvas{

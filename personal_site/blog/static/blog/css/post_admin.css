@@ -208,7 +208,7 @@
 
 .post-admin-list input[type="file"]{
     max-width: calc(80% - 3rem);
-    height: 2rem;
+    height: 3.3rem;
     margin: 0.5rem;
     padding: 0.5rem;
     border: 2px solid var(--border-color);
@@ -300,11 +300,11 @@
 
 .maximize-button-minimized{
     position: absolute;
-    top: calc(1rem + 10px);
+    top: 2rem;
     right: 0;
     min-width: 20%;
     max-width: 20%;
-    transform: translateX(calc(-10% - 1rem));
+    transform: translateX(-50%);
     z-index: 2;
 }
 
@@ -333,7 +333,8 @@
         min-width: calc(100% - 1rem);
         min-height: 60vh;
         overflow-x: scroll;
-        terxt-align: center;
+        text-align: center;
+        margin: auto;
     }
 
     .post-preview{

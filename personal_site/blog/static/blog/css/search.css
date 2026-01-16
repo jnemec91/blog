@@ -1,6 +1,6 @@
 .search-input{
     width: calc(80% - 3rem);
-    height: 1rem;
+    height: calc(2rem + 3.5px);
     padding: 0.5rem;
     border: 2px solid var(--border-color);
     display: inline-block;

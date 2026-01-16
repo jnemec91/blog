@@ -42,13 +42,20 @@
 
 @media screen and (max-width: 1220px){
     .post-detail{
-        margin-top: calc(6rem + 100px);
+        margin-top: calc(3rem + 100px);
+        width: 100%;
+        max-width: 100%; 
     }
 
     .row{
         padding-left: 1rem;
         padding-right: 1rem;
         width: calc(100% - 2rem);
+    }
+
+    .certificates{
+        width: 100%!important;
+        margin: auto;
     }
     
 }

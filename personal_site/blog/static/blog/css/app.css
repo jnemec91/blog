@@ -69,14 +69,19 @@ i{
     }
 
     .title-bar{
-        margin-top: 5rem;
+        margin-top: 0;
         padding-left: 0.5rem;
-        width: calc(100% - 1rem);
+        width: 100%;
+        height: fit-content;
         left: 0;
     }
     
     .column{
         width: calc(100% - 2rem);
+    }
+
+    .stats{
+        margin-bottom: 1rem!important;
     }
     
 }

@@ -100,7 +100,6 @@ p .navbar-htmx-link::after {
 }
 
 .navbar > li > p::before{
-    content: '├ \1F4C4';
     color: var(--foreground-color);
     display: inline-block;
     position: absolute;
@@ -109,6 +108,14 @@ p .navbar-htmx-link::after {
     top: -5px;
     left: 1rem;
     opacity: 1 !important;
+}
+
+.navbar > li > p::before{
+    content: '├ \1F4C4';
+}
+
+.navbar > li > .folder::before{
+    content: '├ \1F4C1';
 }
 
 .navbar > li > p::after{
@@ -123,6 +130,10 @@ p .navbar-htmx-link::after {
 
 .navbar > li > p:last-child::before{
     content: '└ \1F4C4';
+}
+
+.navbar > li > .folder:last-child::before{
+    content: '└ \1F4C1'!important;
 }
 
 .navbar > li > p:last-child::after{
@@ -240,8 +251,8 @@ p .navbar-htmx-link::after {
         display: block!important;
         display: block;
         position: fixed;
-        top: 1rem;
-        right: 1rem;
+        top: 0.5rem;
+        right: 0.5rem;
         color: var(--foreground-color);
         background-color: var(--background-color-2);
         border: 2px solid var(--border-color);

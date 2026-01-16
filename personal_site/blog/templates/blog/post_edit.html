@@ -92,11 +92,11 @@
                 var minimizeButton = document.createElement('button');
                 minimizeButton.textContent = 'Minimize';
                 minimizeButton.style.position = 'fixed';
-                minimizeButton.style.top = 'calc(2vh + 2px)';
+                minimizeButton.style.top = 'calc(1vh + 1.5rem)';
                 minimizeButton.style.zIndex = '1000';
                 minimizeButton.classList.add('maximize-button');
                 document.body.appendChild(minimizeButton);
-                minimizeButton.style.left = `calc(55% - ${minimizeButton.offsetWidth /2 + 6}px)`;
+                minimizeButton.style.left = `calc(55% - 5rem)`;
 
                 minimizeButton.addEventListener('click', function() {
                     var textArea = document.querySelector('#id_content');

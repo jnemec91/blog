@@ -108,7 +108,7 @@
 
 @media screen and (max-width: 1220px){
     .post{
-        width: calc(100% - 2rem);
+        width: calc(100% - 4rem);
         margin-left: 0;
         z-index: 1;
     }
