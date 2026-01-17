@@ -251,7 +251,3 @@ input[type="checkbox"]:hover {
         visibility: visible;
     }
 }
-
-* {
-    box-sizing: border-box;
-}

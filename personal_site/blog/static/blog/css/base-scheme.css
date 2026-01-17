@@ -31,3 +31,7 @@ code{
     line: 0.5rem;
     max-width: 100%;
 }
+
+* {
+    box-sizing: border-box;
+}
