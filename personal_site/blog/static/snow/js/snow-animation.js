@@ -235,7 +235,7 @@ function initializeSnowAnimation() {
     if (addShapeButton) {
         addShapeButton.onclick = () => {
             addSnowflakeShape();
-            window.toggleModal();
+            window.toggleNewSnowModal();
         };
     }
 

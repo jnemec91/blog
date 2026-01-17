@@ -50,7 +50,7 @@
     position: absolute;
     top: 22px;
     right: 22px;
-    z-index: 33;
+    z-index: 29;
     background-color: #405f6b;
     border-radius: 5px;
     visibility: hidden;
@@ -200,7 +200,7 @@ input[type="checkbox"]:hover {
 
 .snow-new-flake-controls {
     width: 90%;
-    margin: 35% 5% 0 5%;
+    margin: 10px 5% 0 5%;
     height: fit-content;
     display: flex;
     flex-flow: nowrap row;
@@ -219,13 +219,6 @@ input[type="checkbox"]:hover {
     justify-content: center;
 }
 
-@media (max-width: 1250px) {
-    .snow-new-flake-controls{
-        margin-top: 45%;  
-    }
-    
-}
-
 @media (max-width: 768px) {
     #snow-buttons {
         width: calc(100% - 40px);
@@ -240,7 +233,6 @@ input[type="checkbox"]:hover {
     }
 
     .snow-new-flake-controls{
-        margin-top: 200px;
         flex-direction: column;
         height: auto;       
     }
