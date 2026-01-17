@@ -1,0 +1,20 @@
+{% load static %}
+<div id="life-buttons">
+    <h4>Conways's game of life</h4>
+    <div id="life-control-buttons">
+        <button id="life-startStop" class="life-button">Start</button>
+        <button class="life-button" onclick="gameOfLifeStep()">Krok &raquo;</button>
+    </div>
+    <div>
+        <label class="life-slider-label" for="life-lifeSpeed">Rychlost</label>
+        <input type="range" id="life-gameSpeed" min="450" max="900" value="670" step="10">
+    </div>                
+    <div class="life-button" id="life-resetSnowflakes" style="margin-top: 15px;" onclick="resetGameOfLife()">
+        Resetovat
+    </div>
+</div>
+<button id="life-buttons-toggler" class="life-buttons-toggler life-button" onclick="toggleLifeButtons()">&#10006</button>
+
+<canvas id="life-canvas"></canvas>
+
+<script src="{% static 'life/js/life-animation.js' %}"></script>

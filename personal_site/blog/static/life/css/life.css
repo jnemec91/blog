@@ -1,0 +1,157 @@
+/* Life Game Menu Styles */
+
+#life-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    background-color: #4e565a;
+    border-radius: 10px;
+    opacity: 0.8;
+    width: 300px;
+    height: fit-content;
+    will-change: auto;
+}
+
+#life-control-buttons{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-flow: nowrap row;
+    justify-content: space-around;
+}
+
+#life-buttons h4 {
+    color: white;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    font-weight: normal;
+}
+
+#life-buttons .life-button {
+    margin: 0 auto 20px auto;
+}
+
+#life-control-buttons .life-button{
+    margin: 0 auto 20px auto;
+}
+
+.life-buttons-toggler {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    z-index: 33;
+    background-color: #405f6b;
+    border-radius: 5px;
+    visibility: hidden;
+}
+
+.life-button {
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    user-select: none;
+    width: fit-content;
+    margin: 0 0 20px 20px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border: 1px solid white;
+    border-radius: 5px;
+    box-shadow: 5px 5px 25px rgba(0,0,0,0.5);
+    transition: box-shadow 0.2s ease;
+    background: transparent;
+}
+
+.life-button span {
+    font-size: 24px;
+    line-height: 24px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.life-button:hover {
+    box-shadow: 5px 5px 25px rgba(0,0,0,0.5) inset;
+}
+
+.life-slider-label {
+    color: white;
+    font-size: 13px;
+    margin: 5px 0 0 20px;
+    width: fit-content;
+    display: inline-block;
+}
+
+.life-buttons-hidden {
+    visibility: hidden;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    height: 12px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    margin: 0 20px !important;
+    width: calc(100% - 40px);
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: transparent;
+    border: 3px solid #405f6b;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: transparent;
+    border: 3px solid #405f6b;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+    background-color: #405f6b;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background-color: #405f6b;
+}
+
+input[type="range"]:hover {
+    box-shadow: 0 0 5px rgba(255,255,255,1);
+}
+
+#life-canvas{
+    display: block;
+    background: transparent;
+    z-index: 9;
+    will-change: transform; /* Enable hardware acceleration */
+    background: #212121;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    #life-buttons {
+        width: calc(50%);
+        font-size: 14px;
+        z-index:  19; 
+    }
+
+    .life-buttons-toggler {
+        visibility: visible;
+    }
+}
