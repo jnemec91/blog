@@ -88,10 +88,3 @@
         height: 250px;
     }
 }
-
-canvas{
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: calc(-1.5rem - 4px) 0 0 calc(-1rem - 2px);
-}
