@@ -1,7 +1,7 @@
     {% load static %}
     <div id="snow-buttons">
         <h4>Procedurální sněžení</h4>
-        <div id="snow-new" class="snow-button" onclick="toggleModal();">
+        <div id="snow-new" class="snow-button" onclick="toggleNewSnowModal();">
             <span>+</span> Nová vločka
         </div>
         <div style="margin: 0 auto 20px auto; width: fit-content;">
@@ -33,15 +33,15 @@
         </div>
     </div>
 
-    <button id="snow-buttons-toggler" class="snow-buttons-toggler snow-button" onclick="toggleButtons()">&#10006</button>
+    <button id="snow-buttons-toggler" class="snow-buttons-toggler snow-button" onclick="toggleSnowButtons()">&#10006</button>
 
-    <div class="snow-backdrop" onclick="toggleModal();"></div>
+    <div class="snow-backdrop" onclick="toggleNewSnowModal();"></div>
     <div id="snow-newSnowflakeModal" class="snow-modal">
         <canvas id="snow-newSnowflakeCanvas"></canvas>
         <div class="snow-new-flake-controls">
             <div>
                 <div class="snow-button" id="snow-addShape" style="margin:0;">Přidat</div>
-                <div class="snow-button" onclick="toggleModal()" style="margin: 5px 0 0 0;">Zavřít</div>
+                <div class="snow-button" onclick="toggleNewSnowModal()" style="margin: 5px 0 0 0;">Zavřít</div>
             </div>
             <div>
                 <label class="snow-slider-label" for="snow-spanning">Počet větví</label>
@@ -55,7 +55,6 @@
                 <label class="snow-slider-label" for="snow-spanAngle">Úhel větví</label>
                 <input type="range" id="snow-spanAngle" min="1" max="360" value="320">
             </div>
-            <br>
             <div>
                 <label class="snow-slider-label" for="snow-branches">Počet ramen</label>
                 <input type="range" id="snow-branches" min="6" max="9" value="1">

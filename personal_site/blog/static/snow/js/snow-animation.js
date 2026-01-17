@@ -16,8 +16,8 @@ if (!window.snowState) {
     };
 }
 
-if (typeof window.toggleModal === 'undefined') {
-    window.toggleModal = () => {
+if (typeof window.toggleNewSnowModal === 'undefined') {
+    window.toggleNewSnowModal = () => {
         const backdrop = document.querySelector('.snow-backdrop');
         const modal = document.getElementById('snow-newSnowflakeModal');
         if (backdrop && modal) {
@@ -26,7 +26,7 @@ if (typeof window.toggleModal === 'undefined') {
         }
     };
 
-    window.toggleButtons = () => {
+    window.toggleSnowButtons = () => {
         const buttons = document.getElementById('snow-buttons');
         const toggler = document.getElementById('snow-buttons-toggler');
         if (buttons) {
