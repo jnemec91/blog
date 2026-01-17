@@ -1,68 +1,68 @@
     {% load static %}
-    <div id="buttons">
+    <div id="snow-buttons">
         <h4>Procedurální sněžení</h4>
-        <div id="new" class="button" onclick="toggleModal();">
+        <div id="snow-new" class="snow-button" onclick="toggleModal();">
             <span>+</span> Nová vločka
         </div>
         <div style="margin: 0 auto 20px auto; width: fit-content;">
-            <label class="slider-label" for="randomSnowflakes">Generovat náhodné</label>
-            <input type="checkbox" id="randomSnowflakes">
+            <label class="snow-slider-label" for="snow-randomSnowflakes">Generovat náhodné</label>
+            <input type="checkbox" id="snow-randomSnowflakes">
         </div>
         <div>
-            <label class="slider-label" for="spawnCount">Vločky za vteřinu</label>
-            <input type="range" id="spawnCount" min="1" max="200" value="100">
+            <label class="snow-slider-label" for="snow-spawnCount">Vločky za vteřinu</label>
+            <input type="range" id="snow-spawnCount" min="1" max="200" value="100">
         </div>                
         <div>
-            <label class="slider-label" for="gravity">Gravitace</label>
-            <input type="range" id="gravity" min="1" max="20" value="1" step="0.1">
+            <label class="snow-slider-label" for="snow-gravity">Gravitace</label>
+            <input type="range" id="snow-gravity" min="1" max="20" value="1" step="0.1">
         </div>
         <div>
-            <label class="slider-label" for="wind">Vítr</label>
-            <input type="range" id="wind" min="-50" max="50" value="0">
+            <label class="snow-slider-label" for="snow-wind">Vítr</label>
+            <input type="range" id="snow-wind" min="-50" max="50" value="0">
         </div>
         <div>
-            <label class="slider-label" for="rotationSpeed">Rychlost rotace</label>
-            <input type="range" id="rotationSpeed" min="-10" max="10" value="0" step="1">
+            <label class="snow-slider-label" for="snow-rotationSpeed">Rychlost rotace</label>
+            <input type="range" id="snow-rotationSpeed" min="-10" max="10" value="0" step="1">
         </div>        
         <div>
-            <label class="slider-label" for="wind">Maximální velikost</label>
-            <input type="range" id="snowflakeSize" min="1" max="30" value="10">
+            <label class="snow-slider-label" for="snow-wind">Maximální velikost</label>
+            <input type="range" id="snow-snowflakeSize" min="1" max="30" value="10">
         </div>
-        <div class="button" id="resetSnowflakes" style="margin-top: 15px;" onclick="resetSnowflakes()">
+        <div class="snow-button" id="snow-resetSnowflakes" style="margin-top: 15px;" onclick="resetSnowflakes()">
             Resetovat
         </div>
     </div>
 
-    <button id="buttons-toggler" class="buttons-toggler button" onclick="toggleButtons()">&#10006</button>
+    <button id="snow-buttons-toggler" class="snow-buttons-toggler snow-button" onclick="toggleButtons()">&#10006</button>
 
-    <div class="backdrop" onclick="toggleModal();"></div>
-    <div id="newSnowflakeModal" class="modal">
-        <canvas id="newSnowflakeCanvas"></canvas>
-        <div class="new-flake-controls">
+    <div class="snow-backdrop" onclick="toggleModal();"></div>
+    <div id="snow-newSnowflakeModal" class="snow-modal">
+        <canvas id="snow-newSnowflakeCanvas"></canvas>
+        <div class="snow-new-flake-controls">
             <div>
-                <div class="button" id="addShape" style="margin:0;">Přidat</div>
-                <div class="button" onclick="toggleModal()" style="margin: 5px 0 0 0;">Zavřít</div>
+                <div class="snow-button" id="snow-addShape" style="margin:0;">Přidat</div>
+                <div class="snow-button" onclick="toggleModal()" style="margin: 5px 0 0 0;">Zavřít</div>
             </div>
             <div>
-                <label class="slider-label" for="spanning">Počet větví</label>
-                <input type="range" id="spanning" min="1" max="20" value="10">
+                <label class="snow-slider-label" for="snow-spanning">Počet větví</label>
+                <input type="range" id="snow-spanning" min="1" max="20" value="10">
             </div>
             <div>
-                <label class="slider-label" for="fuzzyness">Délka větví</label>
-                <input type="range" id="fuzzyness" min="1" max="10" value="3">
+                <label class="snow-slider-label" for="snow-fuzzyness">Délka větví</label>
+                <input type="range" id="snow-fuzzyness" min="1" max="10" value="3">
             </div>            
             <div>
-                <label class="slider-label" for="spanAngle">Úhel větví</label>
-                <input type="range" id="spanAngle" min="1" max="360" value="320">
+                <label class="snow-slider-label" for="snow-spanAngle">Úhel větví</label>
+                <input type="range" id="snow-spanAngle" min="1" max="360" value="320">
             </div>
             <br>
             <div>
-                <label class="slider-label" for="branches">Počet ramen</label>
-                <input type="range" id="branches" min="6" max="9" value="1">
+                <label class="snow-slider-label" for="snow-branches">Počet ramen</label>
+                <input type="range" id="snow-branches" min="6" max="9" value="1">
             </div>
             <div>
-                <label class="slider-label" for="previewSize">Přiblížení</label>
-                <input type="range" id="previewSize" min="1" max="150" value="120">
+                <label class="snow-slider-label" for="snow-previewSize">Přiblížení</label>
+                <input type="range" id="snow-previewSize" min="1" max="150" value="120">
             </div>
         </div>
         
@@ -82,7 +82,7 @@
         
     </div>
 
-    <canvas id="snowCanvas" class="animation"></canvas>
+    <canvas id="snow-snowCanvas" class="animation"></canvas>
 
     <!-- Proceduralni generovani vlocek a snezeni. -->
     <script src="{% static 'snow/js/snow-animation.js' %}"></script>

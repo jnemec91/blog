@@ -18,27 +18,39 @@ if (!window.snowState) {
 
 if (typeof window.toggleModal === 'undefined') {
     window.toggleModal = () => {
-        const backdrop = document.querySelector('.backdrop');
-        const modal = document.getElementById('newSnowflakeModal');
+        const backdrop = document.querySelector('.snow-backdrop');
+        const modal = document.getElementById('snow-newSnowflakeModal');
         if (backdrop && modal) {
-            backdrop.classList.toggle('backdrop-active');
-            modal.classList.toggle('modal-active');
+            backdrop.classList.toggle('snow-backdrop-active');
+            modal.classList.toggle('snow-modal-active');
         }
     };
 
     window.toggleButtons = () => {
-        const buttons = document.getElementById('buttons');
-        const toggler = document.getElementById('buttons-toggler');
+        const buttons = document.getElementById('snow-buttons');
+        const toggler = document.getElementById('snow-buttons-toggler');
         if (buttons) {
-            buttons.classList.toggle('buttons-hidden');
+            buttons.classList.toggle('snow-buttons-hidden');
         }
-        if (toggler && buttons.classList.contains('buttons-hidden')) {
+        if (toggler && buttons.classList.contains('snow-buttons-hidden')) {
             toggler.innerHTML = 'Ovládací prvky';
         } else if (toggler) {
             toggler.innerHTML = '&#10006;';
         }
     };
 }
+
+// always show menu when resizing to large screens
+window.addEventListener('resize', () => {
+    const buttons = document.getElementById('snow-buttons');
+    if (window.innerWidth > 768 && buttons && buttons.classList.contains('snow-buttons-hidden')) {
+        buttons.classList.remove('snow-buttons-hidden');
+        const toggler = document.getElementById('snow-buttons-toggler');
+        if (toggler) {
+            toggler.innerHTML = '&#10006;';
+        }
+    }
+});
 
 document.addEventListener('htmx:beforeRequest', function(evt) {
     resetSnowflakes();
@@ -61,7 +73,7 @@ function resetSnowflakes() {
     window.snowState.size = 10;
     window.snowState.rotationSpeed = 0;
 
-    const randomSnowflakesCheckbox = document.getElementById('randomSnowflakes');
+    const randomSnowflakesCheckbox = document.getElementById('snow-randomSnowflakes');
     if (randomSnowflakesCheckbox) {
         randomSnowflakesCheckbox.checked = false;
     }
@@ -69,7 +81,7 @@ function resetSnowflakes() {
 
 function drawSnowflake(ctx, centerX, centerY, size, fuzzyness, spanning, spanAngle, branches, rotation = 0, isPreview = false) {
     // draws a snowflake on given context
-    const newSnowflakeCanvas = document.getElementById('newSnowflakeCanvas');
+    const newSnowflakeCanvas = document.getElementById('snow-newSnowflakeCanvas');
     
     if (isPreview && newSnowflakeCanvas) {
         ctx.clearRect(0, 0, newSnowflakeCanvas.width, newSnowflakeCanvas.height);
@@ -148,19 +160,19 @@ function initializeSnowAnimation() {
         cancelAnimationFrame(window.snowState.animationFrameId);
     }
 
-    const newSnowflakeCanvas = document.getElementById('newSnowflakeCanvas');
+    const newSnowflakeCanvas = document.getElementById('snow-newSnowflakeCanvas');
     const newSnowflakeCtx = newSnowflakeCanvas ? newSnowflakeCanvas.getContext('2d') : null;
-    const snowCanvas = document.getElementById('snowCanvas');
+    const snowCanvas = document.getElementById('snow-snowCanvas');
     const snowCtx = snowCanvas ? snowCanvas.getContext('2d') : null;
 
     if (!snowCanvas || !snowCtx) return;
 
     function updateSnowflakePreview() {
-        const fuzzySlider = document.getElementById('fuzzyness');
-        const spanSlider = document.getElementById('spanning');
-        const branchSlider = document.getElementById('branches');
-        const angleSlider = document.getElementById('spanAngle');
-        const previewSlider = document.getElementById('previewSize');
+        const fuzzySlider = document.getElementById('snow-fuzzyness');
+        const spanSlider = document.getElementById('snow-spanning');
+        const branchSlider = document.getElementById('snow-branches');
+        const angleSlider = document.getElementById('snow-spanAngle');
+        const previewSlider = document.getElementById('snow-previewSize');
         
         if (!fuzzySlider || !spanSlider || !branchSlider || !angleSlider || !previewSlider || !newSnowflakeCtx || !newSnowflakeCanvas) return;
         
@@ -174,13 +186,13 @@ function initializeSnowAnimation() {
     }
 
     // rmove old event listeners by cloning preview sliders
-    ['fuzzyness', 'spanning', 'branches', 'spanAngle', 'previewSize'].forEach(id => {
+    ['snow-fuzzyness', 'snow-spanning', 'snow-branches', 'snow-spanAngle', 'snow-previewSize'].forEach(id => {
         const slider = document.getElementById(id);
         if (slider) slider.replaceWith(slider.cloneNode(true));
     });
 
     // add event listeners to preview sliders
-    ['fuzzyness', 'spanning', 'branches', 'spanAngle', 'previewSize'].forEach(id => {
+    ['snow-fuzzyness', 'snow-spanning', 'snow-branches', 'snow-spanAngle', 'snow-previewSize'].forEach(id => {
         const slider = document.getElementById(id);
         if (slider) slider.addEventListener('input', updateSnowflakePreview);
     });
@@ -190,10 +202,10 @@ function initializeSnowAnimation() {
     function addSnowflakeShape() {
         // query current slider elements to get updated references
         const config = {
-            fuzzyness: document.getElementById('fuzzyness'),
-            spanning: document.getElementById('spanning'),
-            branches: document.getElementById('branches'),
-            spanAngle: document.getElementById('spanAngle')
+            fuzzyness: document.getElementById('snow-fuzzyness'),
+            spanning: document.getElementById('snow-spanning'),
+            branches: document.getElementById('snow-branches'),
+            spanAngle: document.getElementById('snow-spanAngle')
         };
         
         if (!Object.values(config).every(el => el)) return;
@@ -219,7 +231,7 @@ function initializeSnowAnimation() {
         }
     }
 
-    const addShapeButton = document.getElementById('addShape');
+    const addShapeButton = document.getElementById('snow-addShape');
     if (addShapeButton) {
         addShapeButton.onclick = () => {
             addSnowflakeShape();
@@ -297,7 +309,7 @@ function initializeSnowAnimation() {
 
         let currentTime = Date.now();
         if (currentTime - window.snowState.lastSpawnTime > window.snowState.spawnInterval) {
-            const randomCheckbox = document.getElementById('randomSnowflakes');
+            const randomCheckbox = document.getElementById('snow-randomSnowflakes');
             if (randomCheckbox && randomCheckbox.checked) {
                 let randomShape = generateRandomSnowflakeShape();
                 window.snowState.snowflakeShapes.push(randomShape);
@@ -347,11 +359,11 @@ function initializeSnowAnimation() {
 
     // setup animation control sliders
     const sliderConfig = [
-        { id: 'spawnCount', callback: (val) => { window.snowState.spawnInterval = 1000 / parseInt(val); } },
-        { id: 'gravity', callback: (val) => { window.snowState.gravity = parseInt(val) / 100; } },
-        { id: 'wind', callback: (val) => { window.snowState.wind = parseInt(val) / 100; } },
-        { id: 'snowflakeSize', callback: (val) => { window.snowState.size = parseInt(val); } },
-        { id: 'rotationSpeed', callback: (val) => { window.snowState.rotationSpeed = parseInt(val); } }
+        { id: 'snow-spawnCount', callback: (val) => { window.snowState.spawnInterval = 1000 / parseInt(val); } },
+        { id: 'snow-gravity', callback: (val) => { window.snowState.gravity = parseInt(val) / 100; } },
+        { id: 'snow-wind', callback: (val) => { window.snowState.wind = parseInt(val) / 100; } },
+        { id: 'snow-snowflakeSize', callback: (val) => { window.snowState.size = parseInt(val); } },
+        { id: 'snow-rotationSpeed', callback: (val) => { window.snowState.rotationSpeed = parseInt(val); } }
     ];
 
     sliderConfig.forEach(({ id, callback }) => {
