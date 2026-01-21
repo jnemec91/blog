@@ -29,7 +29,7 @@ function initialize_bee_animation(){
 
     if (window.beeState.hive){
         window.beeState.hive.addEventListener('click', function(){
-            if (window.beeState.maxbees < 8){
+            if (window.beeState.maxbees < 20){
                 create_bee();
                 window.beeState.maxbees = window.beeState.maxbees + 1;
             }
@@ -147,8 +147,9 @@ function frame() {
     if (posy >= par.offsetHeight || posy < -50 || posx > par.offsetWidth || posx < -50) {
         clearInterval(id);
         bee.remove()
-        window.beeState.maxbees = window.beeState.maxbees - 1;
-
+        if (window.beeState){
+            window.beeState.maxbees = window.beeState.maxbees - 1;
+        }
     } else {
         if (wing1.style.transform == "rotate(45deg)"){
             wing1.style.transform = "rotate(0deg)";
