@@ -21,7 +21,7 @@ function resetGameOfLife() {
     window.gameOfLifeState = null;
     initializeGameOfLife();
     drawGameOfLife();
-    
+    document.getElementById('life-startStop').innerText = 'Start';
 }
 
 function initializeGameOfLife() {
