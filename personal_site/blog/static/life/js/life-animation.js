@@ -15,18 +15,28 @@ if (typeof window.toggleLifeButtons === 'undefined') {
 }
 
 function resetGameOfLife() {
-    if (window.gameOfLifeState) {
-        window.gameOfLifeState = null;
-        initializeGameOfLife();
-        drawGameOfLife();
+    if (window.gameOfLifeState && window.gameOfLifeState.intervalId) {
+        clearInterval(window.gameOfLifeState.intervalId);
     }
+    window.gameOfLifeState = null;
+    initializeGameOfLife();
+    drawGameOfLife();
+    
 }
 
 function initializeGameOfLife() {
+    window.gameOfLifeState = null;
     
-    if (!window.gameOfLifeState) {
+    if (!window.gameOfLifeState) {    
+        window.gameOfLifeState = {
+            gameOfLifeArray: [],
+            isRunning: false,
+            lifeCanvas: document.getElementById('life-canvas'),
+            cellSize: 8,
+            lastCellClicked: null,
+            intervalId: null,
+        };
 
-        const lifeCanvas = document.getElementById('life-canvas');        
         
         class Cell {
             constructor(isAlive = false) {
@@ -71,16 +81,11 @@ function initializeGameOfLife() {
             }
         }
 
-        window.gameOfLifeState = {
-            gameOfLifeArray: [],
-            isRunning: false,
-            lifeCanvas: lifeCanvas,
-            cellSize: 10,
-        };
+        if (window.gameOfLifeState) {
+        const rows = Math.floor(window.gameOfLifeState.lifeCanvas.height) / window.gameOfLifeState.cellSize;
+        const cols = Math.floor(window.gameOfLifeState.lifeCanvas.width) / window.gameOfLifeState.cellSize;
 
-        const rows = Math.floor(lifeCanvas.height) / window.gameOfLifeState.cellSize;
-        const cols = Math.floor(lifeCanvas.width) / window.gameOfLifeState.cellSize;
-        
+
         for (let i = 0; i < rows; i++) {
             const row = [];
             for (let j = 0; j < cols; j++) {
@@ -88,11 +93,14 @@ function initializeGameOfLife() {
             }
             window.gameOfLifeState.gameOfLifeArray.push(row);
         }
+
+        }
     }
+    drawGameOfLife();
 }
 
 initializeGameOfLife();
-drawGameOfLife();
+
 
 function drawGameOfLife() {
     const state = window.gameOfLifeState;
@@ -114,7 +122,7 @@ function drawGameOfLife() {
             const cell = state.gameOfLifeArray[c][r];
             const x = r * state.cellSize;
             const y = c * state.cellSize;
-
+            
             if (cell.isAlive) {
                 ctx.fillStyle = '#00FF00';
                 ctx.fillRect(x, y, state.cellSize, state.cellSize);
@@ -156,19 +164,21 @@ window.gameOfLifeState.lifeCanvas.addEventListener('mousemove', (event) => {
         window.gameOfLifeState.lifeCanvas.style.cursor = 'pointer';
     }
 
-    // console.log(`Mouse position: ${x}, ${y}`);
-    // console.log(`Cell size: ${cellSize}`);
-    // console.log(`Cell position: ${col}, ${row}`);
+    if (!window.gameOfLifeState.isRunning) {
+        drawGameOfLife();
+    }
 
-    drawGameOfLife();
 });
 
 // Track mouse state for drag functionality
 window.gameOfLifeState.isMouseDown = false;
 
+window.gameOfLifeState.lifeCanvas.addEventListener('click', (event) => {
+    toggleCellAtEvent(event);
+});
+
 window.gameOfLifeState.lifeCanvas.addEventListener('mousedown', (event) => {
     window.gameOfLifeState.isMouseDown = true;
-    toggleCellAtEvent(event);
 });
 
 window.gameOfLifeState.lifeCanvas.addEventListener('mousemove', (event) => {
@@ -179,10 +189,12 @@ window.gameOfLifeState.lifeCanvas.addEventListener('mousemove', (event) => {
 
 window.gameOfLifeState.lifeCanvas.addEventListener('mouseup', () => {
     window.gameOfLifeState.isMouseDown = false;
+    window.gameOfLifeState.lastCellClicked = null;
 });
 
 window.gameOfLifeState.lifeCanvas.addEventListener('mouseleave', () => {
     window.gameOfLifeState.isMouseDown = false;
+    window.gameOfLifeState.lastCellClicked = null;
 });
 
 function toggleCellAtEvent(event) {
@@ -192,9 +204,17 @@ function toggleCellAtEvent(event) {
     const cellSize = window.gameOfLifeState.cellSize;
     const row = Math.floor(y / cellSize);
     const col = Math.floor(x / cellSize);
+
+
     if (row >= 0 && row < window.gameOfLifeState.gameOfLifeArray.length &&
         col >= 0 && col < window.gameOfLifeState.gameOfLifeArray[row].length) {
+        if (window.gameOfLifeState.lastCellClicked &&
+            window.gameOfLifeState.lastCellClicked.row === row &&
+            window.gameOfLifeState.lastCellClicked.col === col) {
+            return; // prevent toggling the same cell multiple times during drag
+        }
         window.gameOfLifeState.gameOfLifeArray[row][col].toggle();
+        window.gameOfLifeState.lastCellClicked = {row, col};
     }
 
     drawGameOfLife();
@@ -236,7 +256,6 @@ function toggleGameOfLife() {
 }
 
 document.getElementById('life-startStop').addEventListener('click', toggleGameOfLife);
-
 
 // initialize on load
 if (document.readyState === 'loading') {
