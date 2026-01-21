@@ -32,7 +32,7 @@ function initializeGameOfLife() {
             gameOfLifeArray: [],
             isRunning: false,
             lifeCanvas: document.getElementById('life-canvas'),
-            cellSize: 8,
+            cellSize: Math.floor(Math.min(window.innerWidth, window.innerHeight) / 180),
             lastCellClicked: null,
             intervalId: null,
         };
@@ -139,17 +139,17 @@ function drawGameOfLife() {
             const y = c * state.cellSize;
             
             if (cell.isAlive) {
-                ctx.fillStyle = '#00FF00';
+                ctx.fillStyle = 'rgba(0, 180, 0, 0.2)';
                 ctx.fillRect(x, y, state.cellSize, state.cellSize);
-                ctx.fillStyle = 'rgba(0, 255, 0, 0.3)';
+                ctx.fillStyle = 'rgba(0, 255, 0, 0.8)';
                 ctx.fillRect(x, y, state.cellSize, state.cellSize);
             }
 
             if (cell.cursorHover) {
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
                 ctx.fillRect(x, y, state.cellSize, state.cellSize);
             }
-            ctx.strokeStyle = '#333333';
+            ctx.strokeStyle = '#111111';
             ctx.strokeRect(x, y, state.cellSize, state.cellSize);
         }
     }
