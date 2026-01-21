@@ -52,7 +52,10 @@ def category(request, category_hash):
 def post(request, post_hash):
     if post_hash == 'latest':
         post = BlogPost.objects.filter(is_published=True).order_by('-created_at').first()
-        return redirect('blog:post', post_hash=post.hash_field)
+        if post:
+            return redirect('blog:post', post_hash=post.hash_field)
+        else:
+            return render(request, 'blog/no_posts_yet.html')
     
     post = BlogPost.objects.get(hash_field=post_hash)
     if post:
