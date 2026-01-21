@@ -59,9 +59,24 @@ function initializeGameOfLife() {
                 ];
 
                 directions.forEach(([dx, dy]) => {
-                    const newX = x + dx;
-                    const newY = y + dy;
-                    if (newX >= 0 && newX < grid.length && newY >= 0 && newY < grid[0].length) {
+                    let newX = x + dx;
+                    let newY = y + dy;
+                    // newX >= 0 && newX < grid.length && newY >= 0 && newY < grid[0].length
+                    if (newX >= 0 && newY >= 0 && newX < grid.length && newY < grid[0].length) {
+                        this.neighbors.push(grid[newX][newY]);
+                    } else {
+                        if (newX >= grid.length) {
+                            newX = newX % grid.length;
+                        }
+                        if (newY >= grid[0].length) {
+                            newY = newY % grid[0].length;
+                        }
+                        if (newX < 0) {
+                            newX = grid.length + newX;
+                        }
+                        if (newY < 0) {
+                            newY = grid[0].length + newY;
+                        }
                         this.neighbors.push(grid[newX][newY]);
                     }
                 });
