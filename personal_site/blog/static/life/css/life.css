@@ -11,6 +11,7 @@
     width: 300px;
     height: fit-content;
     will-change: auto;
+    text-align: center;
 }
 
 #life-control-buttons{

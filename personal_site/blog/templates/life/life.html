@@ -3,17 +3,17 @@
     <h4>Conways's game of life</h4>
     <div id="life-control-buttons">
         <button id="life-startStop" class="life-button">Start</button>
-        <button class="life-button" onclick="gameOfLifeStep()">Krok &raquo;</button>
+        <button id="life-step" class="life-button">Krok &raquo;</button>
     </div>
     <div>
-        <label class="life-slider-label" for="life-lifeSpeed">Rychlost</label>
-        <input type="range" id="life-gameSpeed" min="450" max="900" value="670" step="10">
-    </div>                
-    <div class="life-button" id="life-resetSnowflakes" style="margin-top: 15px;" onclick="resetGameOfLife()">
-        Resetovat
+        <label class="life-slider-label" for="life-gameSpeed">Rychlost</label>
+        <input type="range" id="life-gameSpeed" min="1" max="30" value="15" step="1">
     </div>
+    <button id="life-reset" class="life-button" style="margin-top: 15px;">
+        Resetovat
+    </button>
 </div>
-<button id="life-buttons-toggler" class="life-buttons-toggler life-button" onclick="toggleLifeButtons()">&#10006</button>
+<button id="life-buttons-toggler" class="life-buttons-toggler life-button">&#10006;</button>
 
 <canvas id="life-canvas"></canvas>
 
