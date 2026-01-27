@@ -132,11 +132,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 STATIC_URL = 'static/'
-STATICFILES_DIR = BASE_DIR / 'static'
-STATICFILES_DIRS = [
-    STATICFILES_DIR,
-    MEDIA_ROOT,
-]
+# STATICFILES_DIR = BASE_DIR / 'static'
+# STATICFILES_DIRS = [
+#     STATICFILES_DIR,
+#     MEDIA_ROOT,
+# ]
 STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
