@@ -1,6 +1,6 @@
 <div class="certificates row center" id="post_footer">
     {% if voted %}
-    <h2>You`ve already voted.</h2>
+    <h2>Už jsi hlasoval.</h2>
     <button
         class="like-button not-available"
     >
@@ -13,7 +13,7 @@
         <i class="fa fa-thumbs-down"></i> Dislikes {{ post.stats.dislikes }}
     </button>
     {% else %}
-    <h2>Vote how you feel about this post.</h2>
+    <h2>Hlasuj zda se ti post líbil.</h2>
     <button
         class="like-button available"
         hx-get="{% url 'blog:like_post' post_hash=post.hash_field like_type='like' %}"
