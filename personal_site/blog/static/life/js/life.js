@@ -61,11 +61,24 @@ const GameOfLifeManager = {
         const canvas = document.getElementById('life-canvas');
         if (!canvas) return;
 
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+        const desiredCellSize = 10;
+        const cols = Math.floor(canvas.width / desiredCellSize);
+        const rows = Math.floor(canvas.height / desiredCellSize);
+        
+        const cellSize = Math.min(
+            canvas.width / cols,
+            canvas.height / rows
+        );
+
         this.state = {
             gameOfLifeArray: [],
             isRunning: false,
             lifeCanvas: canvas,
-            cellSize: 10,
+            cellSize: cellSize,
             lastCellClicked: null,
             isMouseDown: false,
             framesSinceStep: 0,
