@@ -1,6 +1,6 @@
 import os
 
-if os.environ.get('ENVIRONMENT') == 'production':
+if os.getenv('ENVIRONMENT') == 'production':
     from .production import *
     print("Loaded production settings")
 else:
