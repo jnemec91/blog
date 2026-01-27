@@ -48,11 +48,9 @@
 .navbar-htmx-link{
     padding-left: 3.4rem;
     color: var(--foreground-color);
-}
-
-.navbar-htmx-link{
     position: relative;
     transition: color 0.3s ease;
+    user-select: none;
 }
 
 .navbar-htmx-link:hover{
