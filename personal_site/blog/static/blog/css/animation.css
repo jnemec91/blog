@@ -37,6 +37,8 @@
 
     #navigation > button{
         transform: translateY(0);
+        margin: 1px auto;
+        width: 90%!important;
     }
 
     .post-detail.playground-detail{
