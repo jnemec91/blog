@@ -53,4 +53,8 @@
     #login_form button{
         margin-left: 0;
     }
+
+    #login_form input{
+        margin-left: 0;
+    }
 }
