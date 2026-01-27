@@ -65,7 +65,7 @@ const GameOfLifeManager = {
             gameOfLifeArray: [],
             isRunning: false,
             lifeCanvas: canvas,
-            cellSize: Math.floor(Math.min(window.innerWidth, window.innerHeight) / 180),
+            cellSize: 10,
             lastCellClicked: null,
             isMouseDown: false,
             framesSinceStep: 0,
@@ -159,6 +159,27 @@ const GameOfLifeManager = {
             togglerBtn.addEventListener('click', handleToggleButtons);
             this.eventListeners.push({ element: togglerBtn, event: 'click', handler: handleToggleButtons });
         }
+
+        // touch controls
+        canvas.addEventListener('touchstart', (e) => {
+            this.state.isMouseDown = true;
+            this.toggleCellAtEvent(e.touches[0]);
+            e.preventDefault();
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            if (this.state.isMouseDown) {
+                this.toggleCellAtEvent(e.touches[0]);
+            }
+            e.preventDefault();
+        });
+
+        canvas.addEventListener('touchend', (e) => {
+            this.state.isMouseDown = false;
+            this.state.lastCellClicked = null;
+            e.preventDefault();
+        });
+
     },
 
     handleCanvasMouseMove(event) {
