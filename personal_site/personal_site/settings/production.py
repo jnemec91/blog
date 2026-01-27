@@ -28,6 +28,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['gloody.pythonanywhere.com']
 
+ADMIN_ENABLED = False
+
 
 # Application definition
 
