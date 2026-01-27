@@ -33,7 +33,7 @@
                     hx-push-url="true"
                     hx-boost="true"
                 >
-                    About me
+                    O mně
                 </p>
                 <p
                     class="navbar-htmx-link"
@@ -45,11 +45,11 @@
                     hx-push-url="true"
                     hx-boost="true"
                 >
-                    About Samba
+                    O Sambičce
                 </p>
             </li>
             <li>
-                <h2>Posts</h2>
+                <h2>Posty</h2>
             </li>
             <li>
                 <p
@@ -62,7 +62,7 @@
                     hx-push-url="true"
                     hx-boost="true"
                 >
-                    Latest
+                    Poslední
                 </p>
                 <p
                     class="navbar-htmx-link folder"
@@ -74,11 +74,11 @@
                     hx-push-url="true"
                     hx-boost="true"
                 >
-                    All posts
+                    Všechny posty
                 </p>
             </li>
             <li>
-                <h2>Categories</h2>
+                <h2>Kategorie</h2>
             </li>
             <li class="category-list">
                 {% for blog_category in categories %}
@@ -97,7 +97,7 @@
                 {% endfor %}
             </li>
             <li hidden>
-                <h2>Localisation</h2>
+                <h2>Lokalizace</h2>
                 <p class="navbar-htmx-link">
                     <select name="language" id="language">
                         <option value="cs">Czech</option>
@@ -108,7 +108,7 @@
             </li>                
             {% if user.is_authenticated %}
             <li id="edit-nav">
-                <h2>Tools</h2>
+                <h2>Nástroje</h2>
                 <p
                     class="navbar-htmx-link folder"
                     data-text="Posts"
@@ -119,7 +119,7 @@
                     hx-push-url="true"
                     hx-boost="true"
                 >
-                    Posts
+                    Posty
                 </p>
                 <p
                     class="navbar-htmx-link folder"
@@ -131,7 +131,7 @@
                     hx-push-url="true"
                     hx-boost="true"
                 >
-                    Categories
+                    Kategorie
                 </p>
                 <p
                     class="navbar-htmx-link folder"
@@ -155,7 +155,7 @@
                     hx-push-url="true"
                     hx-boost="true"
                 >
-                    Stats
+                    Statistiky
                 </p>               
                 <p
                     class="red navbar-htmx-link"
@@ -165,12 +165,12 @@
                     hx-target="#page_content"
                     hx-get="{% url 'blog:logout' %}"
                 >
-                    Logout
+                    Odhlásit se
                 </p>
             </li>
             {% else %}                               
             <li id="edit-nav">
-                <h2>Tools</h2>                    
+                <h2>Nástroje</h2>                    
                 <p
                     class="navbar-htmx-link"
                     data-text="Login"
@@ -180,7 +180,7 @@
                     hx-get="{% url 'blog:login' %}"
                     hx-push-url="true"
                 >
-                Login
+                Přihlásit se
                 </p>
             </li>
             {% endif %}
@@ -191,7 +191,7 @@
                         class="search-button"
                         onclick="updateSearchUrl('/posts/')"
                     >
-                        Search
+                        Hledat
                     </button>
                     <input type="text" name="search" class="search-input" id="search-input" onkeypress="if(event.keyCode==13) updateSearchUrl('/posts/')">
                 </div>
