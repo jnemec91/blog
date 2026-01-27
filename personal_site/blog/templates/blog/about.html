@@ -1,5 +1,6 @@
 {% extends 'blog/index.html' %}
 {% load static i18n %}
+{% load operations %}
 
 {% block content %}
 
@@ -10,31 +11,43 @@
         <div class="post-detail">
             <div class="top-bar">
                 <div class="title-bar">
-                    <h1>{% blocktranslate %}About me{% endblocktranslate %}</h1>
+                    <h1>{% blocktranslate %}O mně{% endblocktranslate %}</h1>
                 </div>
             </div>
             <div class="page-wrapper">
                 <div class="profile-image">
-                    <img src="{% static 'blog/images/profile.png' %}" alt="Profile image">
+                    <img src="{% static 'blog/images/anime-gloody.jpeg' %}" alt="Profile image">
                 </div>
                 <div class="profile-description" id="profile-description">
-                    <h2>Hello</h2>
+                    <h2>Ahoj, vítejte na mém blogu</h2>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique blanditiis enim pariatur, exercitationem non eius earum velit consectetur, tempora cupiditate, incidunt eum ea accusantium? Perferendis suscipit quisquam eum! Dignissimos.
+                        Jsem {{ current_year|minus:1991 }}ti letý nadšenec do technologií, programování, deskových her a mnoha dalších věcí. 
+                        Tento blog jsem vytvořil, abych sdílel své myšlenky, zkušenosti a projekty s ostatními. Rád řeším problémy, challenguji
+                        se a hledám nové způsoby, jak zlepšit své dovednosti i jak se zabavit.
                     </p>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, in? Repudiandae assumenda, eum modi fugiat beatae eos ex sed fugit consequatur, cum sit, ad tempore mollitia molestiae ipsam quam rerum?
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam perspiciatis, corrupti sapiente nobis nihil excepturi laborum harum quo, sint quasi quibusdam veritatis earum debitis nulla aliquid! Esse distinctio consectetur laborum.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus accusamus aut, tenetur dolorem beatae excepturi necessitatibus culpa ipsum ipsam eaque laborum cupiditate accusantium nihil voluptate voluptatibus placeat! Esse, modi doloribus?
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus doloribus nobis asperiores consequatur porro voluptas rem hic dignissimos, facilis quaerat facere corporis nostrum cupiditate architecto modi! Illo, alias! Placeat, possimus?
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum molestias consequuntur doloribus rerum eius excepturi necessitatibus, culpa quasi deleniti repudiandae! Illum reprehenderit est nulla laboriosam tempore, expedita itaque accusantium quibusdam?
+                        Mám vzdělání v oblasti elektroniky a informačních technologií a pracuji jako specialista v oblasti bezpečnostních
+                        a přístupových systémů. Starám se jejich správu a údržbu. Řeším i integrace těchto systémů do grafických rozhraní 
+                        a aplikací, které mám rovněž na starosti. V rámci své práce se také věnuji vývoji nástrojů pro zpracování dat, 
+                        automatizaci procesů, správě serverů a databází.
+                    </p>
+                    <p>
+                        Mám na starosti dům a chatu se zahradami, kde trávím čas pracemi na čerstvém vzduchu nebo se věnuji opravám a
+                        přestavbám.
+                    </p>
+                    <p>
+                        Jsem chovatelem a členem včelařského spolku. Na chatě mám momentálně 3 včelstva a v budoucnu plánuji rozšířit
+                        svůj chov o další úly.
+                    </p>
+                    <p>
+                        Rád cestuji a poznávám nové kultury a místa. Moc rád chodím po horách a trochu lezu (to tedy ale zatím spíš na stěne).
                     </p>
                 </div>
-                <script type="text/javascript">
+                <!-- <script type="text/javascript">
                     var profileDescription = document.getElementById('profile-description');
                     typingEffect(profileDescription);
 
-                </script>        
+                </script>         -->
             </div>
             <div class="page-wrapper">
                 <div class="ceritifications" id="certificates">
@@ -94,6 +107,14 @@
                             <img src="{% static 'blog/images/adventofcodelogo.png' %}" alt="logo">
                             <a href="https://adventofcode.com/2023" target="_blank">Advent of code 2023</a>
                         </li>
+                        <li>
+                            <img src="{% static 'blog/images/adventofcodelogo.png' %}" alt="logo">
+                            <a href="https://adventofcode.com/2024" target="_blank">Advent of code 2024</a>
+                        </li>
+                        <li>
+                            <img src="{% static 'blog/images/adventofcodelogo.png' %}" alt="logo">
+                            <a href="https://adventofcode.com/2025" target="_blank">Advent of code 2025</a>
+                        </li>                                                 
                     </ul>
                 </div>
             </div>                
