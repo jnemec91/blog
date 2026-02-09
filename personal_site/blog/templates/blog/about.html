@@ -1,6 +1,5 @@
 {% extends 'blog/index.html' %}
-{% load static i18n %}
-{% load operations %}
+{% load static i18n operations %}
 
 {% block content %}
 
@@ -21,18 +20,18 @@
                 <div class="profile-description" id="profile-description">
                     <h2>Ahoj, vítejte na mém blogu</h2>
                     <p>
-                        Jsem {{ current_year|minus:1991 }}ti letý nadšenec do technologií, programování, deskových her a mnoha dalších věcí. 
+                        Jsem {{ current_date.year|minus:1991 }}ti letý nadšenec do technologií, programování, deskových her a mnoha dalších věcí. 
                         Tento blog jsem vytvořil, abych sdílel své myšlenky, zkušenosti a projekty s ostatními. Rád řeším problémy, challenguji
                         se a hledám nové způsoby, jak zlepšit své dovednosti i jak se zabavit.
                     </p>
                     <p>
-                        Mám vzdělání v oblasti elektroniky a informačních technologií a pracuji jako specialista v oblasti bezpečnostních
+                        Mám vzdělání v oblasti elektroniky a informačních technologií a pracuji jako specialista v bezpečnostních
                         a přístupových systémů. Starám se jejich správu a údržbu. Řeším i integrace těchto systémů do grafických rozhraní 
                         a aplikací, které mám rovněž na starosti. V rámci své práce se také věnuji vývoji nástrojů pro zpracování dat, 
                         automatizaci procesů, správě serverů a databází.
                     </p>
                     <p>
-                        Mám na starosti dům a chatu se zahradami, kde trávím čas pracemi na čerstvém vzduchu nebo se věnuji opravám a
+                        Starám se o dům a chatu se zahradami, kde trávím čas pracemi na čerstvém vzduchu nebo se věnuji opravám a
                         přestavbám.
                     </p>
                     <p>
@@ -48,6 +47,13 @@
                     typingEffect(profileDescription);
 
                 </script>         -->
+            </div>
+            <div class="page-wrapper">
+                <p>
+                    Hodně volného času věnuji sebevzdělávání v oblasti IT. Dělám online kurzy, sleduji novinky, 
+                    videa a čtu články. Hlavním zaměřením je pro mě webový vývoj a backendové technologie, ale zajímám se i o další oblasti.
+                    Rád bych se naučil dost abych mohl vytvářet spolehlivé komplexní aplikace a systémy.
+                </p>
             </div>
             <div class="page-wrapper">
                 <div class="ceritifications" id="certificates">

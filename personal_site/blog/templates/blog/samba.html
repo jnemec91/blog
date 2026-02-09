@@ -1,5 +1,5 @@
 {% extends 'blog/index.html' %}
-{% load static i18n %}
+{% load static i18n operations %}
 
 {% block content %}
 <div id="page_content" class="page_content">
@@ -11,25 +11,109 @@
         <div class="post-detail">
             <div class="top-bar">
                 <div class="title-bar">
-                    <h1>{% blocktranslate %}O Sambičce{% endblocktranslate %}</h1>
+                    <h1>O Sambičce</h1>
                 </div>
             </div> 
             <div class="page-wrapper">
                 <div class="profile-image">
-                    <img src="{% static 'blog/images/samba.jpeg' %}" alt="Profile image">
+                    <img src="/static/blog/images/samba.jpeg" alt="Profile image">
                 </div>
                 <div class="profile-description" id="profile-description">
-                    <h2></h2>
-                    <p></p>
+                    <h2>Seznamte se, tohle je Samba</h2>
+                    <p>
+                        Sambička je náš pejsek, fenka, kterou jsme si vzali do péče pomocí slovenské 
+                        iniciativy <a target="_blank" href="https://www.pomocpsikom.sk">Pomoc Psíkom</a>,
+                        která zajišťuje odchyt toulavých psů a v případě nemožnosti nalezení majitele
+                        je dá k adopci. Chtěli jsme pejska, tak jsme se rozhodli že pomůžeme nějakému,
+                        který je bez domova.
+                    </p>
+                    <p>
+                        Jako každý pejsek miluje procházky, jídlo, pro které udělá cokoliv a ráda si
+                        hraje a trénuje povely.
+                    </p>                    
+                    <p>
+                        Narodila se 21.6.2024, takže momentálně jí bude 1 rok 7 měsíců. 
+                        K nám přišla když jí byly jen tři měsíce. 
+                    </p>
+                    <p>
+                        Bohužel ani u nás ještě nebyla celý rok a po náročném letním výletě, se projevila
+                        po kousnutí klíštětem zákeřná vrozená autoimunitní choroba. Od té doby se snažíme
+                        s vypětím veškerých sil Sambičce pomoci a nemoc zastavit, ale neexistuje spolehivý
+                        způsob nebo lék který by ji vyléčil.
+                    </p>
                 </div>
-                <!-- <script type="text/javascript">
-                    var profileDescription = document.getElementById('profile-description');
-                    typingEffect(profileDescription);
+            </div>
+            <div class="page-wrapper">
+                <div class="">
+                    <h2>Imunitně zprostředkovaná hemolytická anémie (IMHA)</h2>
+                    <p>
+                        Sambička onemocněla touto relativně 
+                        <a target="_blank" href="https://en.wikipedia.org/wiki/Autoimmune_hemolytic_anemia">vzácnou nemocí</a>,
+                        kdy její imunitní systém chybně začal tvořit protilátky proti jejím vlastním
+                        červeným krvinkám. Její tělo tak vlastně začalo bojovat samo proti sobě. 
+                        Protilátky se pak vážou na červené krvinky a zabíjejí je, což vede k nedostatku
+                        červených krvinek, které se starají o okysličení organismu. Predispozice pro
+                        chorobu je vrozená. Nemoc pak může spustit například oslabení organismu nebo infekce.
+                        Kdy k tomu dojde a jestli, doktoři nedovedou určit.
+                    </p>
+                    <p>
+                        Mezi hlavní příznaky patří:
+                        <ul>
+                            <li>Únava</li>
+                            <li>Slabost</li>
+                            <li>Zrychlený tep</li>
+                            <li>Bledé či žluté sliznice</li>
+                        </ul>
+                    </p>
+                    <p>
+                        V Samby případě nejspíš chorobu spustila infekce bakterií 
+                        <a target="_blank" href="https://cs.wikipedia.org/wiki/Anaplazmóza">Anaplazmózy</a>, kterou přenáší
+                        klíštata. V době infikování navíc hárala, takže její imunitní systém byl už tak
+                        oslaben. Navíc lékaři její únavu a slabost spojovali spíše s délkou našeho výletu
+                        v kombinaci s háráním, což společně s falešně negativními testy na anaplazmu
+                        přispělo k tomu, že se nemoc a její příčinu se podařilo diagnostikovat až v době,
+                        kdy Sambička byla v kritickém stavu.
+                    </p>
+                </div>
+            </div>
+            <div class="page-wrapper graphs-wrapper">
+                <div class="content-section">
+                    <h2>Průběh nemoci</h2>
+                    <p>
+                        Níže je zobrazen průběh Samby nemoci na základě jejích krevních testů. Grafy zobrazují hladiny 
+                        jednotlivých ukazatelů.
+                    </p>
+                    <div class="graph-carousel" id="medicalGraphCarousel"></div>
+                    <h3>Důležité momenty:</h3>
+                    <ul>
+                        <li><strong>21.04.2025:</strong> Transfuze 330ml krve DIA 1+ přímo od dárce</li>
+                        <li><strong>22.04.2025:</strong> Transfuze 300ml krve DIA 1- přímo od dárce</li>
+                        <li><strong>25.05.2025:</strong> Transfuze 300ml krve DIA 1- erytrocytární masa z krevní banky</li>
+                        <li><strong>27.05.2025:</strong> Aplikace 110 milionů kmenových buňěk</li>
+                        <li><strong>16.06.2025:</strong> Aplikace 28,56 milionů kmenových buňěk</li>
+                    </ul>
+                </div>
+            </div>
 
-                </script>         -->
-            </div>                          
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    renderGraphs();
+                });
+
+                document.addEventListener('htmx:afterSwap', function() {
+                    renderGraphs();
+                });
+            </script>
+            
+            <div class="page-wrapper">
+                <div class="">
+                    <h2>Léčba</h2>
+                    <p>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, incidunt quia mollitia molestias ducimus magni! Esse velit dicta perferendis eaque! Voluptatum quis dignissimos cumque libero magnam, pariatur sapiente fugiat explicabo.
+                    </p>
+                </div>
+            </div>           
         </div>
     </div>
 </div>
-
 {% endblock %}
