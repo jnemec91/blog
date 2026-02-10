@@ -7,8 +7,8 @@ def navbar_context(request):
         'categories': Category.objects.filter(blogpost__is_published=True).distinct()
     }
 
-def current_year(request):
-    """Provide the current year to all templates."""
+def current_date(request):
+    """Provide the current date to all templates."""
     return {
-        'current_year': datetime.now().year
+        'current_date': datetime.now().date()
     }

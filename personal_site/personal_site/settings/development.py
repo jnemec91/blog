@@ -65,7 +65,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'blog.context_processors.navbar_context',
-                'blog.context_processors.current_year',
+                'blog.context_processors.current_date',
             ],
         },
     },
@@ -111,7 +111,7 @@ LOGIN_REDIRECT_URL = 'blog:home'
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'cs-CZ'
 
 TIME_ZONE = 'UTC'
 

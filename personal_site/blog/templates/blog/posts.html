@@ -60,7 +60,7 @@
                 <img class="post-list-image" src="{% static post.image %}" alt="">
             {% endif %}
             <div class="post-description">
-                <p>{{ post.category }}</p>
+                <p>Kategorie: {{ post.category.name }}</p>
                 <p>{{ post.created_at }}</p>
             </div>
         </div>

@@ -6,8 +6,8 @@ from blog.models import BlogUser
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'autocomplete': 'email'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'autocomplete': 'current-password'}))
 
     def clean(self):
         cleaned_data = super().clean()
@@ -18,7 +18,7 @@ class LoginForm(forms.Form):
             user = authenticate(email=email, password=password)
 
             if user is None:
-                raise ValidationError('Invalid email or password')
+                raise ValidationError('Špatný email nebo heslo.')
 
         return cleaned_data
 
